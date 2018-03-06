@@ -1,0 +1,63 @@
+<div>
+    <div class="x_panel">
+        <div class="x_content">
+            <div class="form-group">
+                <label class="required"> Start date:</label>
+                <p-calendar id="calStartDate" [(ngModel)]="StartDate" [showIcon]="true" [required]="true"></p-calendar>
+                <div class="space"></div>
+                <label class="required"> End date:</label>
+                <p-calendar id="calEndDate" [(ngModel)]="EndDate" [showIcon]="true" [required]="true"></p-calendar>
+                <div class="space"></div>
+                <button type="button" (click)="submit()" id="bSubmit" [disabled]="!dateRangeIsvalid()" class="btn btn-info">Submit</button>
+                <div class="space"></div>
+                <label class="validation">{{getErrorMsg()}}</label>  
+            </div>
+            <div class="ln_solid"></div>
+        </div>
+    </div>
+</div> 
+
+<div>
+    <p-dataTable #dt id="auditdt"
+                 exportFilename="audit"
+                 [value]="dataSource"
+                 [rows]="10"
+                 [paginator]="true"
+                 [globalFilter]="gb"
+                 [responsive]="true"
+                 [tableStyle]="{'table-layout':'auto'}"
+                 resizableColumns="true"
+                 expandableRows="true">
+        <p-header>
+            <div class="ui-helper-clearfix">
+                <button id="bExport" type="button" pButton icon="fa-file-o" iconPos="left" label="Export" (click)="dt.exportCSV()" style="float:left"></button>
+            </div>
+        </p-header>
+       
+        <p-column expander="true" styleClass="col-icon"></p-column>
+        <p-column field="entityName" header="Action Item" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="actionType" header="Action Type" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+       
+        <p-column field="userName" header="User" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="auditDate" header="Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <ng-template let-audit pTemplate="rowexpansion"> 
+            <div *ngIf="audit.entityName==='Tables/Schemas'">
+                <petroTable [audit]="audit"></petroTable>
+            </div>
+                      
+            <div *ngIf="audit.entityName==='Mapping'">
+                <petroMapping [audit]="audit"></petroMapping>
+            </div>
+                       
+            <div *ngIf="audit.entityName==='Software Version'">
+                <version [audit]="audit"></version>
+            </div>                  
+        </ng-template>
+    </p-dataTable>
+</div>
+
+<loading [loading]="loading"></loading>
+
+<p-dialog [(visible)]="displayTable" [modal]="true" [responsive]="true" appendTo="body">
+    <petroTable [audit]="selectedAudit"></petroTable>
+</p-dialog>

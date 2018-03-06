@@ -1,0 +1,15 @@
+﻿ul {
+    list-style-type: none;
+}
+.memo {
+   background-color: rgb(247, 247, 247);
+}
+.memoList_Div {
+    height: 180px; 
+    overflow-y: auto;       
+
+}
+
+.ui-accordion .ui-accordion-content {
+    background: rgb(247, 247, 247) !important;
+}

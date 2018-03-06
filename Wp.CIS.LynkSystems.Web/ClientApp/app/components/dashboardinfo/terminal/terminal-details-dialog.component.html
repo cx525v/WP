@@ -1,0 +1,51 @@
+﻿<div id="terminaldetaildialog" class="detailDiv">
+    <div class="container-fluid" *ngIf="detail">
+        <div class="row">
+            <div>
+                <label id="lTerminal">TERMINAL: {{detail.tid}}</label>
+            </div>
+        </div>
+        <div class="row" style="margin-top:12px;">
+            <div>
+                <i style="font-size:smaller">Terminal Equipment:</i> <span id="terminalEquipment">{{detail.terminalEquipment}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <i style="font-size:smaller">Terminal Type:</i> <span id="terminalType">{{detail.terminalType}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <i style="font-size:smaller">Software Type:</i> <span id="softDesc">{{detail.softDesc}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <i style="font-size:smaller">Status:</i> <span id="statDesc">{{detail.statDesc}}</span>
+                <span *ngIf="sensitivityInfo && sensitivityInfo.sensitivityLevel !=0" id="senLevelDesc">/{{sensitivityInfo.senLevelDesc}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <i style="font-size:smaller">Activation Date:</i> <span id="activationDt">{{detail.activationDt | dateFormat}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <i style="font-size:smaller">Deactivation Date:</i> <span id="deactivationDt">{{detail.deactivationDt | dateFormat}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div  class="ServicesDiv">
+                <span id="activeServiesDesc"><i style="font-size:smaller">Services: </i>{{detail.activeServiesDesc}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                <i style="font-size:smaller">Billing Method:</i> <span id="billMtdDesc">{{detail.billMtdDesc}}</span>
+            </div>
+        </div>
+    </div>
+</div>
+

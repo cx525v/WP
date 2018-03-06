@@ -1,0 +1,281 @@
+﻿
+
+<div id="productInfoEditContainer" *ngIf="_productModelToEdit" class="form-inline col-md-12 productEditSectionStyle noMarginsOrPaddingStyle">
+
+    <div class="form-group col-md-12 formGroupSectionStyle noMarginsOrPaddingStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4 noMarginsOrPaddingStyle">Terminal Type</label>
+            <label id="terminalType" class="col-md-8 labelInfoStyle noMarginsOrPaddingStyle">{{_productModelToEdit?.terminalType}}</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="isObsoleteYes" class="col-md-4 noMarginsOrPaddingStyle">Obsolete</label>
+            <p-radioButton id="isObsoleteYes" name="isObsoleteGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.obsoleteIndicator" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="isObsoleteNo"  name="isObsoleteGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.obsoleteIndicator" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4 noMarginsOrPaddingStyle">Term Manu. Code:</label>
+            <label id="terminalManufacturingCode" class="col-md-8 labelInfoStyle" style="margin:0;padding:0;">{{_productModelToEdit?.terminalManufCode}}</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="integratedPinPadYes" class="col-md-4 noMarginsOrPaddingStyle">Integrated Pin Pad:</label>
+            <p-radioButton id="integratedPinPadYes" name="integratedPinPadGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.integratedPinPad" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="integratedPinPadNo"  name="integratedPinPadGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.integratedPinPad" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4 noMarginsOrPaddingStyle">Term Description:</label>
+            <label id="productDetailDescription" class="col-md-8 labelInfoStyle noMarginsOrPaddingStyle">{{_productModelToEdit?.description}}</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="usedEquipmentYes" class="col-md-4 noMarginsOrPaddingStyle">Used Equipment:</label>
+            <p-radioButton id="usedEquipmentYes" name="usedEquipmentGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.usedEquipment" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="usedEquipmentNo"  name="usedEquipmentGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.usedEquipment" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label class="col-md-4" style="margin:0;padding:0;">Product Type:</label>
+
+            <p-dropdown id="ddlProductType" name="selectedProductTypeControl" [options]="_productTypes" [(ngModel)]="_selectedProductType" class="col-md-4" [autoWidth]="false" [disabled]="!_isEditMode"></p-dropdown>
+            <div class="col-md-4">
+                <button p-button label="Terminal Comm Types" class="btn btn-primary" [disabled]="!_isEditMode">Terminal Comm Types</button>
+            </div>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="isWirelessYes" class="col-md-4 noMarginsOrPaddingStyle">Wireless</label>
+            <p-radioButton id="isWirelessYes" name="isWirelessGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.wireless" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="isWirelessNo"  name="isWirelessGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.wireless" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label class="col-md-4" style="margin:0;padding:0;">Manufacturer:</label>
+            <p-dropdown id="ddlManufacturers" [options]="_manufacturers" [(ngModel)]="_selectedManufacturer" class="col-md-8" [autoWidth]="false" [disabled]="!_isEditMode"></p-dropdown>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="giftCardOnlyYes" class="col-md-4 noMarginsOrPaddingStyle">Gift Card Only:</label>
+            <p-radioButton id="giftCardOnlyYes" name="giftCardOnlyGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.glOnlyTerminal" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="giftCardOnlyNo"  name="giftCardOnlyGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.glOnlyTerminal" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4" style="margin:0;padding:0;">Install Type:</label>
+            <p-dropdown id="ddlInstallTypes" [options]="_installTypes" [(ngModel)]="_selectedInstallType" class="col-md-8" [disabled]="!_isEditMode" [autoWidth]="false"></p-dropdown>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="supportsDepositsYes" class="col-md-4 noMarginsOrPaddingStyle">Supports Deposits</label>
+            <p-radioButton id="supportsDepositsYes" name="supportsDepositsGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.supportsDeposits" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="supportsDepositsNo"  name="supportsDepositsGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.supportsDeposits" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="productName" class="col-md-4" style="margin:0;padding:0;">Product Name:</label>
+            <label id="productName" class="col-md-8 labelInfoStyle" style="margin:0;padding:0;">{{_productModelToEdit?.description}}</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="varTerminalYes" class="col-md-4 noMarginsOrPaddingStyle">VAR Terminal:</label>
+            <p-radioButton id="varTerminalYes" name="varTerminalGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.varTerminal" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="varTerminalNo"  name="varTerminalGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.varTerminal" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="businessTypeAtm" class="col-md-4 noMarginsOrPaddingStyle">Business Type:</label>
+            <p-radioButton id="businessTypeAtm"     name="businessTypeGroup" [value]="2" [(ngModel)]="_productModelToEdit && _productModelToEdit.businessType" class="col-md-4" label="ATM" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="businessTypePayment" name="businessTypeGroup" [value]="1" [(ngModel)]="_productModelToEdit && _productModelToEdit.businessType" class="col-md-4" label="Payment" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="tsysProductYes" class="col-md-4 noMarginsOrPaddingStyle">TSYS Product</label>
+            <p-radioButton id="tsysProductYes" name="tsysProductGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.isTSYSEquip" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="tsysProductNo"  name="tsysProductGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.isTSYSEquip" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="integratedPrinterYes" class="col-md-4 noMarginsOrPaddingStyle">Integrated Printer</label>
+            <p-radioButton id="integratedPrinterYes" name="integratedPrinterGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.integratedPrinter" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="integratedPrinterNo"  name="integratedPrinterGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.integratedPrinter" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="pciReportYes" class="col-md-4 noMarginsOrPaddingStyle">PCI Report</label>
+            <p-radioButton id="pciReportYes" name="pciReportGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.pciReport" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="pciReportNo"  name="pciReportGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.pciReport" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="integratedProductYes" class="col-md-4 noMarginsOrPaddingStyle">Integrated Product:</label>
+            <p-radioButton id="integratedProductYes" name="integratedProductGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.integrated" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="integratedProductNo"  name="integratedProductGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.integrated" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="isObsolete" class="col-md-4 noMarginsOrPaddingStyle">Support Level</label>
+            <label id="isObsolete" class="col-md-8 labelInfoStyle noMarginsOrPaddingStyle">{{_productModelToEdit?.supportLevel}}</label>
+        </div>
+
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label class="col-md-4 noMarginsOrPaddingStyle">Download Time:</label>
+            <p-dropdown id="ddlDownloadTimes" name="downloadTimesControl" [options]="_downloadTimes" [(ngModel)]="_selectedDownloadTime" [autoWidth]="false" class="col-md-8" [disabled]="!_isEditMode"></p-dropdown>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="hidEnabledYes" class="col-md-4 noMarginsOrPaddingStyle">HID Enabled:</label>
+            <p-radioButton id="hidEnabledYes" name="hidEnabledGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.hidEnabled" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="hidEnabledNo"  name="hidEnabledGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.hidEnabled" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="supportsDirectDepositYes" class="col-md-4 noMarginsOrPaddingStyle">Supports Direct Debit:</label>
+            <p-radioButton id="supportsDirectDepositYes" name="supportsDirectDebitGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.supportsDirectDebit" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="supportsDirectDepositNo"  name="supportsDirectDebitGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.supportsDirectDebit" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="pinLessDebitYes" class="col-md-4 noMarginsOrPaddingStyle">PINLess Debit:</label>
+            <p-radioButton id="pinLessDebitYes" name="pinLessDebitGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.isPinlessDebit" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="pinLessDebitNo"  name="pinLessDebitGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.isPinlessDebit" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="directDebitOnlyYes" class="col-md-4 noMarginsOrPaddingStyle">Direct Debit Only:</label>
+            <p-radioButton id="directDebitOnlyYes" name="directDebitOnlyGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.directDebitOnly" class="col-md-2" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="directDebitOnlyNo"  name="directDebitOnlyGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.directDebitOnly" class="col-md-2" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="supportE2eeYes" class="col-md-4 noMarginsOrPaddingStyle">Support E2EE:</label>
+            <p-radioButton id="supportE2eeYes" name="supportE2eeGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.supportE2EE" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="supportE2eeNo"  name="supportE2eeGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.supportE2EE" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="balanceMethodNone" class="col-md-4 noMarginsOrPaddingStyle">Balance Method:</label>
+            <p-radioButton id="balanceMethodNone" name="balanceMethodGroup" value="None" [(ngModel)]="_productModelToEdit && _productModelToEdit.balanceMethodDesc" class="col-md-2" label="None" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="balanceMethodSystem" name="balanceMethodGroup" value="System" [(ngModel)]="_productModelToEdit && _productModelToEdit.balanceMethodDesc" class="col-md-2" label="System" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="balanceMethodManual" name="balanceMethodGroup" value="Manual" [(ngModel)]="_productModelToEdit && _productModelToEdit.balanceMethodDesc" class="col-md-4" label="Manual" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4" style="margin:0;padding:0;">Third Party Product Name</label>
+            <label id="productThirdPartyProductName" class="col-md-8 labelInfoStyle" style="margin:0;padding:0;">{{_productModelToEdit?.thirdPartyProductName}}</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="supportEwicYes" class="col-md-4 noMarginsOrPaddingStyle">Support eWIC</label>
+            <p-radioButton id="supportEwicYes" name="supportEwicGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.supporteWIC" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="supportEwicNo"  name="supportEwicGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.supporteWIC" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4 noMarginsOrPaddingStyle">VT Major Version Number:</label>
+            <label id="vtmajorVersion" class="col-md-8 labelInfoStyle" style="margin:0;padding:0;">{{_productModelToEdit?.vtMajorVersion}}</label>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="smallMerchantYes" class="col-md-4 noMarginsOrPaddingStyle">Small Merchant</label>
+            <p-radioButton id="smallMerchantYes" name="smallMerchantGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.isSmallMerchant" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="smallMerchantNo"  name="smallMerchantGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.isSmallMerchant" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="terminalType" class="col-md-4 noMarginsOrPaddingStyle">Is Mobile Product</label>
+            <p-dropdown name="isMobileControl" [options]="_isMobileOptions" [(ngModel)]="_selectedIsMobile" class="col-md-8" [disabled]="!_isEditMode" [autoWidth]="false"></p-dropdown>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="epsEnabledYes" class="col-md-4 noMarginsOrPaddingStyle">EPS Enable</label>
+            <p-radioButton id="epsEnabledYes" name="epsEnabledGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.epsEnabled" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="epsEnabledNo"  name="epsEnabledGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.epsEnabled" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+    <div class="form-group col-md-12 noMarginsOrPaddingStyle formGroupSectionStyle">
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="ddlProductBrands" class="col-md-4 noMarginsOrPaddingStyle">Brand Id</label>
+            <p-dropdown id="ddlProductBrands" [options]="_productBrandOptions" [(ngModel)]="_selectedProductBrand" class="col-md-8" [disabled]="!_isEditMode" [autoWidth]="false"></p-dropdown>
+        </div>
+
+        <div class="col-sm-12 col-md-6 noMarginsOrPaddingStyle">
+            <label for="support24DigitYes" class="col-md-4 noMarginsOrPaddingStyle">Support 24 Digt Merchant ID</label>
+            <p-radioButton id="support24DigitYes" name="support24DigitGroup" [value]="true" [(ngModel)]="_productModelToEdit && _productModelToEdit.isSupports24MID" class="col-md-4" label="Yes" [disabled]="!_isEditMode"></p-radioButton>
+            <p-radioButton id="support24DigitNo"  name="support24DigitGroup" [value]="false" [(ngModel)]="_productModelToEdit && _productModelToEdit.isSupports24MID" class="col-md-4" label="No" [disabled]="!_isEditMode"></p-radioButton>
+        </div>
+
+    </div>
+
+</div>

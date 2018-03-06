@@ -1,0 +1,18 @@
+.ui-menu {
+    width: 60px; 
+}
+.ui-menu-child {
+    left: -324px !important;
+}
+.blueiconcolor {
+    color:blue;
+}
+
+.whiteiconcolor {
+    color: white;
+}
+
+.ui-menubar {
+    background: inherit !important;
+    border: none;
+}

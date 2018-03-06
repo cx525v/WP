@@ -1,0 +1,16 @@
+.contactsDiv {
+    width: 100%;
+    padding: 0;   
+}
+
+.ui-datatable.borderless thead th,
+.ui-datatable.borderless tbody,
+.ui-datatable.borderless tbody tr,
+.ui-datatable.borderless tbody td {
+    border-style: none;
+}
+
+#contactGridClient div.ui-paginator-bottom.ui-paginator {
+    border-style: none; 
+}
+

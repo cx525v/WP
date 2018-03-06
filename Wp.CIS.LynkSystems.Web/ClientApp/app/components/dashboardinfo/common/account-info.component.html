@@ -1,0 +1,25 @@
+﻿<div *ngIf="accountInfo" class="accountInfo">
+    <div class="row">
+        <div>
+            <label id="accountInfoname">{{accountInfo.name}}</label>
+        </div>
+
+    </div>
+    <div class="row">
+        <div>
+            Address:
+        </div>
+    </div>
+    <div class="row">
+        <div>
+            <span id="accountInfoprinAddress">{{accountInfo.prinAddress}}</span>
+        </div>
+
+    </div>
+    <div class="row">
+        <div>
+            <span id="accountInfoprinCity">{{accountInfo.prinCity}}</span>, <span id="accountInfoprinState">{{accountInfo.prinState}}</span> <span id="accountInfoprinZipcode">{{accountInfo.prinZipcode}}</span>
+        </div>
+    </div>
+
+</div>

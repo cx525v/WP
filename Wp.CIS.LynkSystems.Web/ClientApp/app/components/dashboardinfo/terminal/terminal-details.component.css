@@ -1,0 +1,8 @@
+﻿.ServicesDiv span {
+    display: block;
+    padding-left: 4em;
+    text-indent: -4em;
+}
+.inline {
+    display: inline-block;
+}

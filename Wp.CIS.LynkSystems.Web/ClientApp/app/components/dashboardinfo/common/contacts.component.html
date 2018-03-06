@@ -1,0 +1,18 @@
+<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div> 
+<div class="contactsDiv" *ngIf="contacts">
+    <p-dataTable id="contactGridClient"
+                 sortField="contact" 
+                 sortOrder="1"  
+                 [value]="contacts"
+                 [rows]="5"
+                 [paginator]="true"
+                 [responsive]="true"
+                 styleClass="borderless"
+                 [tableStyle]="{'table-layout':'auto'}"                
+                 resizableColumns="true">
+        <p-column field="id" header="ID"></p-column>
+        <p-column field="contact" header="Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="addressType" header="Role" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="lastFour" header="Last 4" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+    </p-dataTable>
+</div>

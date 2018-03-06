@@ -1,0 +1,99 @@
+﻿<div class="x_panel">
+    <div class="x_content">
+        <div class="container-fluid">
+           <div class="row">
+                <div *ngIf="petroTables" class="col-md-12 content-section implementation">                 
+                    <p-dataTable [value]="petroTables" 
+                                 [rows]="10" 
+                                 [paginator]="true" 
+                                 [globalFilter]="gb" 
+                                 [responsive]="true"
+                                 [(selection)]="selectedTable"
+                                 [tableStyle]="{'table-layout':'auto'}">
+                        <p-header>Table View</p-header>
+
+                        <p-column styleClass="col-button">
+                            <ng-template pTemplate="header">
+                                <button type="button" pButton icon="fa-pencil-square-o"></button>
+                            </ng-template>
+                            <ng-template let-PetroTable="rowData" pTemplate="body">
+                                <button type="button" pButton (click)="selectPetroTable(PetroTable)" icon="fa-pencil-square-o"></button>
+                            </ng-template>
+                        </p-column>
+
+                        <p-column field="tableName" header="Table Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                        <p-column field="active" header="Active" [sortable]="true"></p-column>
+                        <p-column field="definitionOnly" header="Definition Only" [sortable]="true"></p-column>
+
+                        <p-column header="SchemaDef" styleClass="col-button">
+                            <ng-template let-PetroTable="rowData" pTemplate="body">
+                                <button type="button" pButton (click)="displaySchemaDef(PetroTable)" icon="fa-file-code-o"></button>
+                            </ng-template>
+                        </p-column>
+
+                        <p-column header="Default XML" styleClass="col-button">
+                            <ng-template let-PetroTable="rowData" pTemplate="body">
+                                <button type="button" pButton (click)="displayDefaultXml(PetroTable)" icon="fa-file-code-o"></button>
+                            </ng-template>
+                        </p-column>
+                        <p-column field="effectiveDate" header="Effective Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                        <p-column field="createdDate" header="Created Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                        <p-column field="lastUpdatedBy" header="Last Updated By" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                        <p-column field="lastUpdatedDate" header="Last Updated Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+
+                        <p-footer><div class="ui-helper-clearfix" style="width:100%"><button type="button" id="bAddNew" pButton icon="fa-plus" style="float:left" (click)="AddNewTable()" label="Add New Table"></button></div></p-footer>
+
+                    </p-dataTable>
+                </div>
+            </div>
+       </div>
+           <div>
+                <p-messages [(value)]="msgs"></p-messages>
+            </div>
+          <div class="container-fluid" *ngIf="editTable">             
+              <p-panel header="Selected Petro Table" [toggleable]="true" [collapsed]="true">
+                  <div class="row">
+                      <div class="col-md-6 panelDiv">
+                          <tableschema [table]="editTable" [parent]="self" (submitted)="reload($event)"></tableschema>
+                      </div>
+                      <div class="col-md-6 panelDiv">
+                          <tabletree [selectedTable]="editTable"></tabletree>
+                      </div>
+                  </div>
+             </p-panel>
+         </div>         
+    
+    </div>
+</div>
+
+<div *ngIf="xmlString">
+    <p-dialog [(visible)]="displayXml" [modal]="true" [responsive]="true" appendTo="body">      
+         <fieldset class="scheduler-border">
+             <legend class="scheduler-border">{{dialogTitle}}</legend>
+             <div>             
+                <button (click)="download()" type="button" class="btn btn-primary" aria-label="Left Align">
+                    <span class="fa fa-download" aria-hidden="true"> </span> Export
+                </button>              
+             </div>
+             <div class="xmlDiv" >
+                 <pre lang="xml">{{xmlString | xml}}</pre>            
+             </div>
+             <div class="newLineDiv">
+
+             </div>
+        </fieldset>        
+   </p-dialog>
+ </div>
+ 
+
+<div *ngIf="newTable" >
+    <p-dialog [(visible)]="addNewTableDisplay" width="620" [modal]="true" [responsive]="true" [minHeight]="600" appendTo="body" (onHide)="hideNewTable()">
+        <fieldset class="scheduler-border" >
+            <legend class="scheduler-border">Add New Petro Table</legend>
+            <tableschema [table]="newTable" [parent]="self" (submitted)="reload($event)"></tableschema>           
+      </fieldset>
+    </p-dialog>
+</div>
+
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+<loading [loading]="loading"></loading>

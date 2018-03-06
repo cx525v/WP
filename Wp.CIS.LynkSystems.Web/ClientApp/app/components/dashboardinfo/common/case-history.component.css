@@ -1,0 +1,21 @@
+﻿.CaseHistoryDiv {
+    background-color: white;
+    width: 100%;
+    height: 300px;
+    margin-top: 20px;
+    padding-left: 12px;
+    padding-top: 16px;
+    padding-right: 12px;
+    border: 1px solid rgb(231, 231, 231);
+    box-shadow: inset 0 0 5px rgb(231, 231, 231), 0 0 5px rgb(231, 231, 231);
+}
+.ui-datatable.borderless thead th,
+.ui-datatable.borderless tbody,
+.ui-datatable.borderless tbody tr,
+.ui-datatable.borderless tbody td {
+    border-style: none;
+}
+
+#caseHistoryGrid div.ui-paginator-bottom.ui-paginator {
+    border-style: none; 
+}

@@ -1,0 +1,104 @@
+<div *ngIf="IsUpdate;then Update else InsertDelete"></div>
+<ng-template #Update>
+    <div class="x_panel">
+        <div class="x_content">
+            <div class="container"> 
+                <div *ngIf="newTable">
+                    {{newTable.tableName}} updates
+                </div>
+                <div class="divTable" style="border: 1px solid #000;">
+                    <div class="divTableBody" *ngIf="oldTable && newTable">
+                        <div class="divTableRow header">
+                            <div class="divTableCell">Field</div>
+                            <div class="divTableCell">Old Value</div>
+                            <div class="divTableCell">New Value</div>
+                        </div>
+                        <div class="divTableRow" *ngIf="oldTable.tableName != newTable.tableName">
+                            <div class="divTableCell">Table Name</div>
+                            <div class="divTableCell">{{oldTable.tableName}}</div>
+                            <div class="divTableCell">{{newTable.tableName}}</div>
+                        </div>
+                        <div class="divTableRow" *ngIf="oldTable.active != newTable.active">
+                            <div class="divTableCell">Active</div>
+                            <div class="divTableCell">{{oldTable.active}}</div>
+                            <div class="divTableCell">{{newTable.active}}</div>
+                        </div>
+                        <div class="divTableRow" *ngIf="oldTable.definitionOnly != newTable.definitionOnly">
+                            <div class="divTableCell">DefinitionOnly</div>
+                            <div class="divTableCell">{{oldTable.definitionOnly}}</div>
+                            <div class="divTableCell">{{newTable.definitionOnly}}</div>
+                        </div>
+                        <div class="divTableRow" *ngIf="oldTable.schemaDef != newTable.schemaDef">
+                            <div class="divTableCell">Schema Def</div>
+                            <div class="divTableCell">
+                                <button type="button" pButton (click)="displayOldSchemaDef()" icon="fa-pencil-square-o"></button>
+                            </div>
+                            <div class="divTableCell">
+                                <button type="button" pButton (click)="displayNewSchemaDef()" icon="fa-pencil-square-o"></button>
+                            </div>
+                        </div>
+
+                        <div class="divTableRow"  *ngIf="oldTable.defaultXML != newTable.defaultXML">
+                            <div class="divTableCell">Default Xml</div>
+                            <div class="divTableCell">
+                                <button type="button" pButton (click)="displayOldDefaultXml()" icon="fa-pencil-square-o"></button>
+                            </div>
+                            <div class="divTableCell">
+                                <button type="button" pButton (click)="displayNewDefaultXml()" icon="fa-pencil-square-o"></button>
+                            </div>
+                        </div>
+
+                        <div class="divTableRow"  *ngIf="oldTable.effectiveDate != newTable.effectiveDate">
+                            <div class="divTableCell">Effective Date</div>
+                            <div class="divTableCell">{{oldTable.effectiveDate}}</div>
+                            <div class="divTableCell">{{newTable.effectiveDate}}</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ng-template>
+
+<ng-template #InsertDelete>
+    <div class="x_panel">
+        <div class="x_content">
+          <div class="container" *ngIf="petroTables">                
+              <div class="divTable" style="border: 1px solid #000;">                 
+                      <div class="divTableRow header">
+                          <div class="divTableCell">Table Name</div>
+                          <div class="divTableCell">Active</div>
+                          <div class="divTableCell">Definition Only</div>
+                          <div class="divTableCell">Schema Def</div>
+                          <div class="divTableCell">Default XML</div>
+                          <div class="divTableCell">Effective Date</div>
+                      </div>
+                  <div class="divTableBody" *ngFor="let table of petroTables; let i = index">
+                      <div class="divTableRow" >
+                          <div class="divTableCell">{{table.tableName}}</div>
+                          <div class="divTableCell">{{table.active}}</div>
+                          <div class="divTableCell">{{table.definitionOnly}}</div>
+                          <div class="divTableCell"><button type="button" pButton (click)="displaySchemaDef(table)" icon="fa-file-code-o"></button></div>
+                          <div class="divTableCell"><button type="button" pButton (click)="displayDefaultXml(table)" icon="fa-file-code-o"></button></div>
+                          <div class="divTableCell">{{table.effectiveDate}}</div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+        </div>
+    </div>
+</ng-template>
+
+<div *ngIf="xmlString">
+    <p-dialog [(visible)]="displayXml" [modal]="true" [responsive]="true" appendTo="body">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">{{dialogTitle}}</legend>
+            <div class="xmlDiv">
+                <pre lang="xml">{{xmlString | xml}}</pre>
+            </div>
+        </fieldset>
+    </p-dialog>
+</div>
+
+<p-growl [(value)]="msgs"></p-growl>

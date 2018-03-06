@@ -1,0 +1,174 @@
+﻿<Project ToolsVersion="15.0" Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <TypeScriptToolsVersion>2.4</TypeScriptToolsVersion>
+    <Configurations>Debug;Release;Development;QA;Production;DevServer;Staging</Configurations>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <TypeScriptCompileBlocked>true</TypeScriptCompileBlocked>
+    <IsPackable>false</IsPackable>
+  </PropertyGroup>
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.SpaServices" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.3" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Files not to show in IDE -->
+    <None Remove="ClientApp\app\components\administrative\product\productmaintenance\product-edit.component.spec.ts" />
+    <None Remove="ClientApp\app\components\administrative\product\productmaintenance\product-edit.component.ts" />
+    <None Remove="ClientApp\app\components\administrative\product\productmaintenance\product-maintenance-product.component.spec.ts" />
+    <None Remove="ClientApp\app\components\administrative\product\productmaintenance\product-maintenance.component.spec.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\account-info.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\business-info.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\case-history.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\customer-contacts.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\customer-merchant.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\dashboard-title.component.spec.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\memo-list.component.spec.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\memo.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\common\merchant-contacts.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\customer\merchant-locations.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\customer\recent-statements.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\customer\sensitivity-partner.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\dashboard-merchant.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\dashboard.component.spec.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\memo-list-item.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\memo-list.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\merchant\terminal-details.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\merchant\terminal-equipment.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\search-custom.validators.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\terminal\banking-info.component.spec.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\terminal\banking-info.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\terminal\terminal-details-dialog.component.ts" />
+    <None Remove="ClientApp\app\components\dashboardinfo\terminal\transactions.component.ts" />
+    <None Remove="ClientApp\app\models\administration\product\productmaintenance\product-lookup-values.model.ts" />
+    <None Remove="ClientApp\app\models\bankingInfo\banking-info.model.ts" />
+    <None Remove="ClientApp\app\models\caseHistory\case-history-input.model.ts" />
+    <None Remove="ClientApp\app\models\caseHistory\pagination-case-history.model.ts" />
+    <None Remove="ClientApp\app\models\common\client-input-base.model.ts" />
+    <None Remove="ClientApp\app\models\common\lid-primary-key-event.model.ts" />
+    <None Remove="ClientApp\app\models\common\pagination.model.ts" />
+    <None Remove="ClientApp\app\models\dashboardInfo\dashboard-component-params.model.ts" />
+    <None Remove="ClientApp\app\models\dashboardInfo\dashboard-primary-keys.model.ts" />
+    <None Remove="ClientApp\app\models\dashboardInfo\dashboard-search-params-pk.model.ts" />
+    <None Remove="ClientApp\app\models\error\error.model.ts" />
+    <None Remove="ClientApp\app\services\dashboardinfo\case-history.service.ts" />
+    <None Remove="ClientApp\app\services\dashboardinfo\dashboard-events.service.ts" />
+    <None Remove="ClientApp\app\services\dashboardinfo\memo.service.ts" />
+    <None Remove="ClientApp\app\services\error.service.ts" />
+    <None Remove="ClientApp\app\models\Authentication\authHeader.model.ts" />
+    <None Remove="ClientApp\app\services\Authentication\localStorage.service.ts" />
+    <None Remove="ClientApp\app\shared\global.constant.ts" />
+    <None Remove="ClientApp\test\router-stub.ts" />
+    <None Remove="polyfills.ts" />
+    <None Remove="yarn.lock" />
+    <Compile Remove="Views\obj\**" />
+
+    <!-- Files not to publish (note that the 'dist' subfolders are re-added below) -->
+    <Content Remove="ClientApp\**" />
+    <Content Remove="Views\obj\**" />
+    <EmbeddedResource Remove="Views\obj\**" />
+    <None Remove="Views\obj\**" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="bin\" />
+    <Folder Include="ClientApp\app\components\epstableload\schemaupload\tableschema\" />
+    <Folder Include="Content\Bootstrap\fonts\" />
+    <Folder Include="Content\Bootstrap\js\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wp.CIS.LynkSystems.Model\Wp.CIS.LynkSystems.Model.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\administrative\product\productmaintenance\product-edit.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\administrative\product\productmaintenance\product-edit.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\administrative\product\productmaintenance\product-maintenance-product.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\administrative\product\productmaintenance\product-maintenance-product.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\administrative\product\productmaintenance\product-maintenance.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\account-info.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\business-info.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\case-history.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\customer-merchant.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\dashboard-title.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\dashboard-title.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\memo-list.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\memo.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\customer\dashboard-customer.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\customer\merchant-locations.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\recent-statements.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\customer\sensitivity-partner.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\dashboard.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\merchant\dashboard-merchant.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\dashboard.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\memo-list-item.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\common\memo-list.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\terminal\banking-info.component.spec.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\terminal\banking-info.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\terminal\terminal-details-dialog.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\terminal\terminal-details.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\merchant\terminal-equipment.component.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\search-custom.validators.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\dashboardinfo\terminal\transactions.component.ts" />    
+    <TypeScriptCompile Include="ClientApp\app\models\administration\product\productmaintenance\idescription.model.ts" />    
+    <TypeScriptCompile Include="ClientApp\app\models\bankingInfo\banking-info.model.ts" />    
+    <TypeScriptCompile Include="ClientApp\app\models\caseHistory\case-history-input.model.ts" />    
+    <TypeScriptCompile Include="ClientApp\app\models\caseHistory\pagination-case-history.model.ts" />    
+    <TypeScriptCompile Include="ClientApp\app\models\common\client-input-base.model.ts" />    
+    <TypeScriptCompile Include="ClientApp\app\models\common\lid-primary-key-event.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\common\lid-types.enum.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\administration\product\productmaintenance\mobile-lookup.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\administration\product\productmaintenance\product-brand.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\administration\product\productmaintenance\product-lookup-values.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\administration\product\productmaintenance\product-maintenance-row-selected.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\common\pagination.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\dashboardInfo\dashboard-component-params.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\dashboardInfo\dashboard-primary-keys.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\dashboardInfo\dashboard-search-params-pk.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\administrative\products\productmaintenance\audit-history.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\administrative\products\productmaintenance\brand.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\administrative\products\productmaintenance\mobile-lookup.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\error\error.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\common\lid-primary-key-cache-events.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\dashboardinfo\case-history.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\dashboardinfo\dashboard-events.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\dashboardinfo\memo.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\error.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\Authentication\authHeader.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\Authentication\localStorage.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\shared\global.constant.ts" />
+    <TypeScriptCompile Include="ClientApp\test\router-stub.ts" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Update="ClientApp\app\models\common\app-config-settings.model.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+    <None Update="ClientApp\polyfills.ts">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+  <Target Name="RunWebpack" AfterTargets="ComputeFilesToPublish">
+    <!-- As part of publishing, ensure the JS resources are freshly built in production mode -->
+    <!--Tim: Commented out the npm install line. This will be done manually by the developer as needed-->
+    <!--<Exec Command="npm install" />-->
+    <Exec Command="node node_modules/webpack/bin/webpack.js --config webpack.config.vendor.js --env.prod" />
+    <Exec Command="node node_modules/webpack/bin/webpack.js --env.prod" />
+
+    <!-- Include the newly-built files in the publish output -->
+    <ItemGroup>
+      <DistFiles Include="bin\wwwroot\dist\**; ClientApp\dist\**" />
+      <ResolvedFileToPublish Include="@(DistFiles->'%(FullPath)')" Exclude="@(ResolvedFileToPublish)">
+        <RelativePath>%(DistFiles.Identity)</RelativePath>
+        <CopyToPublishDirectory>PreserveNewest</CopyToPublishDirectory>
+      </ResolvedFileToPublish>
+    </ItemGroup>
+  </Target>
+</Project>

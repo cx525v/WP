@@ -1,0 +1,37 @@
+﻿   <div class="ui-grid ui-grid-responsive ui-fluid">
+        <div class="row">
+            <div class="col-md-2">
+                <div *ngIf="processingUpload" style="float:right">
+                    <i class="fa fa-spinner fa-spin" style="font-size:18px;color:red"></i>
+                </div>
+
+            </div>
+            <div class="col-md-10" style="width:500px; max-height:200px">
+                <div class="row">
+                <label class="btn btn-primary btn-file fa fa-upload">
+                    Browse <input type="file" style="display: none;" (change)="uploadfile($event)">
+                </label>
+                 </div>
+                <div class="row">
+                <div style="float:left">
+                <label>{{fileName}}</label>
+                    </div>
+               
+                    </div>
+                <div class="row">
+                    <div style="float:left">
+                        <label>{{fileSize}}</label>
+                    </div>
+                    </div>
+                <div class="row">
+                    <div *ngIf="displaySave" >
+                        <button type="button" class="btn btn-primary" (click)="uploadMapping()">
+                           <span class="fa fa-check fa-lg"></span> Save 
+                        </button>                       
+                    </div>
+                </div>
+
+              </div>
+        </div>
+    </div>
+

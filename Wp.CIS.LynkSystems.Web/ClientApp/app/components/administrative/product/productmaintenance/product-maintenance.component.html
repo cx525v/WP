@@ -1,0 +1,95 @@
+﻿
+
+<div >
+    <span style="font-size:large;font-weight:bold;">Worldpay Products</span><!--<span style="margin-left:40px;">v 1.0.185</span>-->
+</div>
+
+<div class="row" *ngIf="_errorMessage?.length > 0">
+    <div class="alert alert-danger">
+        {{_errorMessage}}
+    </div>
+</div>
+
+<loading [loading]="_displayLoadingDialog"></loading>
+
+<p-fieldset legend="General Info" [toggleable]="true" >
+
+    <div class='row'>
+
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_title">Product Type:</label>
+        </div>
+        <div class='col-sm-6 col-md-2'>
+            <label id="theProductType" class="labelInfoStyle">{{_selectedProduct?.productType}}</label>
+        </div>
+
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_firstname">Product Name:</label>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <label id="productDescription" class="labelInfoStyle">{{_selectedProduct?.description}}</label>
+        </div>
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_lastname">Last Modified By:</label>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <label id="productLastModifiedBy" class="labelInfoStyle">{{_auditHistoryForSelectedRecord?.userName}}</label>
+        </div>
+
+    </div>
+
+    <div class='row'>
+
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_title">Manufacturer:</label>
+        </div>
+        <div class='col-sm-6 col-md-2'>
+            <label id="productManufacturer" class="labelInfoStyle">{{_selectedProduct?.manufacturer}}</label>
+        </div>
+
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_firstname">Terminal Type:</label>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <label id="productTerminalType" class="labelInfoStyle">{{_selectedProduct?.terminalType}}</label>
+        </div>
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_lastname">Last Modified Date:</label>
+        </div>
+        <div class="col-sm-6 col-md-2">
+            <label id="productLastModifiedOn" class="labelInfoStyle">{{_auditHistoryForSelectedRecord?.actionDate | date : 'short'}}</label>
+        </div>
+
+    </div>
+
+    <div class='row'>
+
+        <div class='col-sm-6 col-md-2'>
+            <label for="user_title">Install Type:</label>
+        </div>
+        <div class='col-sm-6 col-md-10'>
+            <label id="productInstallType" class="labelInfoStyle">{{_selectedInstallType}}</label>
+        </div>
+
+    </div>
+
+</p-fieldset>
+
+<div style="margin-top:20px;">
+    <p-tabView>
+        <p-tabPanel header="Products">
+            <product-maintenance-product (onSelectedRowChanged)="onRowSelect($event)"></product-maintenance-product>
+        </p-tabPanel>
+        <p-tabPanel header="Product Compatibility">
+            Product Compatibility: Not implemented 
+        </p-tabPanel>
+        <p-tabPanel header="Software Compatibility">
+            Software Compatibility: Not implemented
+        </p-tabPanel>
+        <p-tabPanel header="PED Status">
+            PED Status: Not implemented
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+

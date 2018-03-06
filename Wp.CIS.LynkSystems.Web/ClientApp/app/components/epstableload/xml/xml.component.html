@@ -1,0 +1,13 @@
+<div *ngIf="xmlString">
+    <p-dialog [(visible)]="display" [modal]="true" [responsive]="true" appendTo="body">
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">{{title}}</legend>
+            <div class="xmlDiv">
+                <pre lang="xml">{{xmlString | xml}}</pre>
+            </div>
+            <div class="newLineDiv">
+
+            </div>
+        </fieldset>
+    </p-dialog>
+</div>

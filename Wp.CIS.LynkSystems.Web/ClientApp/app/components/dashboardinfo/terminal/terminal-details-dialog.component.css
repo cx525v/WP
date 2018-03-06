@@ -1,0 +1,18 @@
+﻿.detailDiv {
+    max-height: 400px;
+    height: auto !important;
+    height: 400px;
+    width: 500px;
+    overflow-y: auto;
+    overflow-x: auto;
+    padding:12px;
+}
+
+.ServicesDiv span {
+    display: block;
+    padding-left: 4em;
+    text-indent: -4em;
+}
+.inline {
+    display: inline-block;
+}

@@ -1,0 +1,160 @@
+    <div class="form-group">
+        <div class="container-flui newLineDiv" *ngIf="table">  
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-8 validationError" *ngIf="!dictionaryExists()">
+                    <label>Please add Dictionary schema file!</label>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Table Name</label>
+                </div>
+                <div class="col-md-8">
+                   <label id="tableName" class="tableName"> {{table.tableName}} </label>
+                </div>
+
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label>Version</label>
+
+                </div>
+                <div class="col-md-8" style="color:blue">
+                   <label id="versionDescription"> {{version.versionDescription}}</label>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="tableActive"> Active</label>
+                </div>
+                <div class="col-md-8">
+                    <p-checkbox binary="true" id="tableActive" name="tableActive" [(ngModel)]="table.active"></p-checkbox>
+                    <label for="tableActive">{{table.active?'Yes':'No'}}</label>
+
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="DefinitionOnly">Schema Definition-Only</label>
+                </div>
+                <div class="col-md-8">
+                    <p-checkbox binary="true" id="tableDefinitionOnly" name="tableDefinitionOnly" [(ngModel)]="table.definitionOnly" (ngModelChange)="definiationChange($event)"></p-checkbox>
+                    <label for="DefinitionOnly">{{table.definitionOnly?'Yes':'No'}}</label>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+            
+            <div class="row">
+                <div class="col-md-3">                 
+                </div>
+                <div class="col-md-8">    
+                    <p-fileUpload id="tableSchemaDef" #tableSchemaDefFile name="schemafiles" customUpload="true" (uploadHandler)="onSchemaUpload($event)" auto="true" chooseLabel="Upload Schema" (onRemove)="RemoveSchema()" accept=".xsd"></p-fileUpload>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-8 validationError" *ngIf="!table.schemaDef">
+                    <label>Schema Definition is required!</label>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row" *ngIf="!table.definitionOnly">
+                <div class="col-md-3">                
+                </div>
+
+                <div class="col-md-8">
+                    <p-fileUpload id="tableDefaultXml" #tableDefaultXmlFile name="xmlfiles" customUpload="true" (uploadHandler)="onDefaultXmlUpload($event)" auto="true" chooseLabel="Upload Default Xml" (onRemove)="RemoveDefaultXml()" accept=".xml"></p-fileUpload>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-8 validationError" *ngIf="!table.definitionOnly && !table.defaultXML">
+                    <label>Default Xml is required!</label>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col-md-3">
+                    <label for="effectiveDate">Effective Date</label>
+                </div>
+                <div class="col-md-8">
+                    <p-calendar id="calenderEffectiveDate" [(ngModel)]="effectiveDate" [showIcon]="true"></p-calendar>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+            </div>
+
+        </div>
+
+        <div class="row validationError">
+            <div class="col-md-3">
+            </div>
+            <div class="col-md-8" *ngIf="!effectiveDate">
+                <label>Effective date: mm/dd/yyyy</label>
+            </div>
+            <div class="col-md-1">
+            </div>
+        </div>    
+
+        <div class="container-flui newLineDiv">
+            <div class="row">
+                <div class="col-md-2">
+                </div>
+                <div class="col-md-3">
+
+                </div>
+                <div class="col-md-2">
+                    <button type="submit" id="bSubmit" name="bCancel" pButton icon="fa-check" label="Save" (click)="Submit()" [disabled]="!tableValid() || !dictionaryExists()"></button>
+                </div>
+                <div class="col-md-1">
+
+                </div>
+                <div class="col-md-2">
+                    <button (click)="cancel()" id="bCancel" name="bCancel" pButton icon="fa-close" label="Cancel"></button>
+                </div>
+                <div class="col-md-2">
+                </div>
+            </div>         
+        </div>
+    </div>

@@ -1,0 +1,10 @@
+.ui-datatable.borderless thead th,
+.ui-datatable.borderless tbody,
+.ui-datatable.borderless tbody tr,
+.ui-datatable.borderless tbody td {
+    border-style: none;
+}
+
+#transactionGridClient div.ui-paginator-bottom.ui-paginator {
+    border-style: none;  
+}

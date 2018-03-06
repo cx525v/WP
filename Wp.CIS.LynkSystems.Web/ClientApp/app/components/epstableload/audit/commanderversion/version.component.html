@@ -1,0 +1,38 @@
+<div *ngIf="IsUpdate;then Update else InsertDelete"></div>
+<ng-template #Update>
+ <div class="divTable" style="border: 1px solid #000;">       
+   <div class="divTableRow header">
+                <div class="divTableCell">Field</div>
+                <div class="divTableCell">Old Value</div>
+                <div class="divTableCell">New Value</div>
+            </div>         
+   <div class="divTableBody" *ngIf="oldVersion && newVersion">
+         <div class="divTableRow">
+             <div class="divTableCell">versionDescription</div>
+             <div class="divTableCell">{{oldVersion.versionDescription}}</div>
+             <div class="divTableCell">{{newVersion.versionDescription}}</div>
+         </div>
+         <div class="divTableRow">
+             <div class="divTableCell">obsoleteIndicator</div>
+             <div class="divTableCell">{{oldVersion.obsoleteIndicator}}</div>
+             <div class="divTableCell">{{newVersion.obsoleteIndicator}}</div>
+         </div>
+     </div>
+ </div>
+</ng-template>
+<ng-template #InsertDelete>
+    <div class="container">
+        <div class="divTable" style="border: 1px solid #000;">
+            <div class="divTableBody">
+                <div class="divTableRow header">                  
+                    <div class="divTableCell">Base Version</div>
+                    <div class="divTableCell">New Version</div>
+                </div>
+                <div class="divTableRow" *ngIf="audit">                   
+                    <div class="divTableCell">{{audit.previousValue}}</div>
+                    <div class="divTableCell">{{audit.newValue}}</div>
+                </div>               
+            </div>
+        </div>
+    </div>
+</ng-template>

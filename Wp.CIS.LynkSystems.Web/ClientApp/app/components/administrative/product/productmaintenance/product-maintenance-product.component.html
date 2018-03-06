@@ -1,0 +1,144 @@
+﻿
+<loading [loading]="_displayLoadingDialog"></loading>
+
+<div class="row" *ngIf="_errorMessage?.length > 0">
+    <div class="alert alert-danger">
+        {{_errorMessage}}
+    </div>
+</div>
+
+<div class="row" style="">
+
+    <div class="col-md-10">
+        <button pButton type="button" class="ui-button-info productActionButtonStyle" label="Add" (click)="addButtonClickHandler()"></button>
+        <button pButton type="button" class="ui-button-info productActionButtonStyle" label="Edit" [disabled]="!_selectedProduct || _selectedProduct?.isInVAMS" (click)="editButtonClickHandler()"></button>
+        <span class="alert alert-danger" *ngIf="_selectedProduct?.isInVAMS">Cannot edit this record in CIS. Any editing will need to be done in VAM</span>
+    </div>
+    <div class="col-md-2 pull-right">
+        <button pButton type="button" class="ui-button-info productActionButtonStyle pull-right" label="Help" (click)="helpButtonClickHandler()"></button>
+    </div>
+
+</div>
+
+<div class="row">
+
+    <p-dataTable [value]="_gridDataSource"
+                 [rows]="10"
+                 [paginator]="true"
+                 [rowsPerPageOptions]="[10,25,50]"
+                 [responsive]="true"
+                 [lazy]="true"
+                 (onLazyLoad)="loadData($event)" 
+                 [totalRecords]="_totalRecords"
+                 [scrollable]="true"
+                 selectionMode="single"
+                 [(selection)]="_selectedProduct"
+                 dataKey="productCode"
+                 (onRowSelect)="onRowSelect($event)"
+                 >
+
+        <p-column field="productType" header="Product Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="description" header="Product" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="productCode" header="Product Code" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="productTypeID" header="Product Type ID" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="obsoleteIndicator" header="Obsolete" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="terminalType" header="Terminal Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="terminalManufCode" header="TermManu" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="usedEquipment" header="Used Equipment" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="wireless" header="Wireless" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="varTerminal" header="VAR Terminal" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="businessType" header="BusinessType" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="installType" header="InstallType" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="glOnlyTerminal" header="SupportsGiftLynk" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="supportsDeposits" header="SupportsDeposits" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="userVarTemplate" header="UseVarTemplate" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="templateFileName" header="TemplateFileName" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="isTSYSEquip" header="IsTSYSEquiped" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="integrated" header="IntegratedProduct" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="downloadTime" header="Download Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="hidEnabled" header="HID Enabled" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="pciReport" header="PCI Report" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="supportsDirectDebit" header="Supports Direct Debit" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="directDebitOnly" header="DirectDebitOnly" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="isPinlessDebit" header="IsPinless" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="supportE2EE" header="TurnOnE2EE" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="balanceMethodDesc" header="Balance Method" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="supporteWIC" header="Support eWIC" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="isSmallMerchant" header="Is Small Merch" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="thirdPartyProductName" header="Third Party Prod Name" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="vtMajorVersion" header="VT Major Nbr" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="isMobile" header="Is Mobile" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+        <p-column field="epsEnabled" header="EPS Enabled" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}">
+        </p-column>
+
+    </p-dataTable>
+
+</div>
+
+<div *ngIf="_selectedProduct">
+
+    <product-edit [ProductModelToEdit]="_selectedProductForEdit" [EditMode]="false" ></product-edit>
+
+</div>

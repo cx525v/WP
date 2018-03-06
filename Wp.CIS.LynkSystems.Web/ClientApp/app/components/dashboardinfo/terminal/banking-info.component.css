@@ -1,0 +1,17 @@
+﻿
+.bankingInfoProgressContainerStyle {
+   width:100%;
+   text-align:center;
+}
+
+.ajax-loader {
+  
+    margin: auto; /* presto! */
+    text-align:center;
+}
+
+.bankingInfoSectionStyle {
+    padding-top:40px; 
+    padding-left:40px;
+}
+

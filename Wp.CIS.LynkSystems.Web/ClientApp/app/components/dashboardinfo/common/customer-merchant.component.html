@@ -1,0 +1,13 @@
+﻿<div class="customerDiv">
+    <label id="contactLabel">Contacts</label>
+    <p-tabView orientation="top" id="pTableView">
+        <p-tabPanel header="CUSTOMER">
+            <contacts [contacts]="customerContacts" [searchParamsPk]="searchParamsPk"></contacts>
+        </p-tabPanel>
+        <p-tabPanel header="MERCHANT" [disabled] ="!ismerchant" [selected]="ismerchant">
+            <contacts [contacts]="merchantContacts" [searchParamsPk]="searchParamsPk" [ismerchant]="true"></contacts>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+

@@ -1,0 +1,45 @@
+﻿   <div>
+        <div class="x_panel">
+            <div class="x_content"> 
+                    <div class="form-group">
+                        <label class="required"> Start date:</label> 
+                        <p-calendar id="calStartDate" [(ngModel)]="StartDate" [showIcon]="true"></p-calendar>
+                        <div class="space"></div>
+                        <label class="required"> End date:</label> 
+                        <p-calendar id="calEndDate" [(ngModel)]="EndDate" [showIcon]="true"></p-calendar>   
+                        <div class="space"></div>
+                        <button type="button" (click)="submitData()" id="bSubmit" [disabled]="!dateRangeIsvalid()" class="btn btn-info">Submit</button>
+                        <label class="validition">{{getErrorMsg()}}</label>                           
+                    </div>
+                    <div class="ln_solid"></div>
+            </div>
+        </div>
+    </div> 
+   <div>  
+        <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none">
+            <div class="row">
+                <div class="col-md-8">
+                    <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+                    <input #gb type="text" pInputText size="50" placeholder="Global Filter">
+                </div>
+                <div class="col-md-4" style="float:right">
+                       <ul class="nav navbar-nav">
+                            <li class="active"><button type="button" id="bWeek" class="btn btn-link" (click)="GetWeekLog()">this week</button> |</li>
+                            <li><button type="button" id="bMonth" class="btn btn-link" (click)="GetMonthLog()">this month</button> |</li>
+                            <li><button type="button" id="bToday" class="btn btn-link" (click)="GetTodayLog()">today</button></li>
+                        </ul>                    
+                </div>
+            </div>         
+        </div>
+        <p-dataTable [value]="dataSource" [rows]="10" [paginator]="true" [globalFilter]="gb"  [responsive]="true" [tableStyle]="{'table-layout':'auto'}">            
+            <p-column field="merchantNbr" header="Merchant Number" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" ></p-column>
+            <p-column field="terminalID" header="Terminal ID" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="downloadDate" header="Download Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="actionType" header="Action Type" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="download" header="Download" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="success" header="Success" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="responseMessage" header="Response Message" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        </p-dataTable>
+    </div>   
+
+<loading [loading]="loading"></loading>

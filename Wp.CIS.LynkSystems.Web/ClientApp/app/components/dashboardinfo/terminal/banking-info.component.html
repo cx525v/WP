@@ -1,0 +1,57 @@
+﻿
+<div class="bankingInfoSectionStyle col-md-12">
+
+    <div *ngIf="_isLoading" class="bankingInfoProgressContainerStyle" >
+
+        <div>Loading Banking Info...</div>
+        <img src="ajax-loader.gif"  class="ajax-loader" />
+
+    </div>
+
+    <div class="row" *ngIf="terminalNbr && _bankingInfoList && _bankingInfoList.length > 0">
+
+        <label id="bankingInfoTitleLabel" >
+            Banking Info
+        </label>
+
+        <div id="bankingInfoErrorMessageContainer" class="alert alert-danger" *ngIf="_errorMsg">
+            {{_errorMsg}}
+        </div>
+
+        <table id="bankingInfoTableForRecords" class="table table-responsive">
+            <thead>
+
+                <tr>
+                    <th>
+                        Activity Account
+                    </th>
+                    <th>
+                        Bank Name
+                    </th>
+                    <th>
+                        Routing Nbr
+                    </th>
+                    <th>
+                        Account Nbr
+                    </th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+                <tr id="bankingInfoRecord_{{theIndex}}" *ngFor="let bankInfo of _bankingInfoList; index as theIndex;">
+
+                    <td id="bankingInfoRecordCell1_{{theIndex}}">{{bankInfo.activityAcctTypeDescription}}</td>
+                    <td id="bankingInfoRecordCell4_{{theIndex}}">{{bankInfo.bankName}}</td>
+                    <td id="bankingInfoRecordCell3_{{theIndex}}">{{bankInfo.bankRTNbr}}</td>
+                    <td id="bankingInfoRecordCell2_{{theIndex}}">{{bankInfo.bankAcctNbr}}</td>
+
+                </tr>
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>

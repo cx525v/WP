@@ -1,0 +1,49 @@
+﻿<div>  
+    <div class="alert alert-danger" *ngIf="_errorMessages && _errorMessages.length > 0">
+        <div id="dashboardErrorMessageParent" *ngFor="let currentError of _errorMessages" class="text-center">
+            <span id="dashboardErrorMessage">{{currentError}}</span>
+        </div>
+    </div>
+
+    <div *ngIf="result">      
+         <advancesearch-result [result]="result"> </advancesearch-result>
+    </div>
+
+    <dashboard-customer *ngIf="_showCustomerComponent" [SearchParamsPk]="_searchParamsPk"></dashboard-customer>
+
+    <dashboard-merchant *ngIf="_showMerchantComponent" [SearchParamsPk]="_searchParamsPk"></dashboard-merchant>
+
+    <div *ngIf="!_showCustomerComponent && !_showMerchantComponent">
+
+        <h1 class="dashboardTitleStyle" >Welcome to the Worldpay Customer Information System.</h1>
+
+        <div class="dashboardInstructionsStyle" >
+
+            <div>
+                There's a new Dashboard view to help you locate customer information quickly.
+            </div>
+
+            <div>
+                To begin your search:
+            </div>
+
+            <ol class="listInstructionsStyle">
+                <li>
+                    Select ID type
+                </li>
+                <li >
+                    Enter an ID number
+                </li>
+                <li>
+                    Click the green search button
+                </li>
+                <li>
+                    Click the hamburger in the upper right corner to access other new applications in CIS.
+                </li>
+            </ol>
+
+        </div>
+  
+
+    </div>
+</div>

@@ -1,0 +1,33 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <Configurations>Debug;Release;Development;QA;Production;DevServer;Staging</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="PetroDefaultsByTableSchema_Result.cs" />
+    <Compile Remove="PetroEPSAllTableSchema.cs" />
+    <Compile Remove="PetroEPSDEfinitionsSchemas_Result.cs" />
+    <Compile Remove="PetroEPSGetSchemasForXMLTable_Result.cs" />
+    <Compile Remove="PetroEPSMapping.cs" />
+    <Compile Remove="PetroEPSTableDefault.cs" />
+    <Compile Remove="PetroEPSTableField.cs" />
+    <Compile Remove="PetroEPSXMLTables.cs" />
+    <Compile Remove="PetroMappings_Result.cs" />
+    <Compile Remove="Tree\XmlHelper.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Identity.Stores" Version="2.0.0" />    
+  </ItemGroup>
+
+</Project>

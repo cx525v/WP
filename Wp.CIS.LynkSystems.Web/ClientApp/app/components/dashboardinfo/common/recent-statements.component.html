@@ -1,0 +1,38 @@
+﻿<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div> 
+<div class="recentStatementDiv" *ngIf="recentStatements?.length > 0">
+    <label style="margin-bottom:20px;" id="lrecentStatement">Recent Statements</label>
+    <div *ngIf="statements" style="padding-left:8px; padding-right:8px;">
+        <div class="row" *ngFor="let item of statements | twoCol ">
+            <div class="col-md-5"><button type="button" class="btn btn-link" (click)="getStatement(item[0])">{{getStatementDate(item[0])}}</button></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5" *ngIf="item[1]"><button type="button" class="btn btn-link" (click)="getStatement(item[1])">{{getStatementDate(item[1])}}</button></div>
+        </div>
+
+        <div *ngIf="morestatements && morestatements.length > 0">
+            <p-accordion>
+                <p-accordionTab id="moreStatementTab" header="more" [selected]="false">
+                    <div class="row" *ngFor="let item of morestatements | twoCol " style="background-color:white">
+                        <div class="col-md-5"><button type="button" class="btn btn-link" (click)="getStatement(item[0])">{{getStatementDate(item[0])}}</button></div>
+                        <div class="col-md-1"></div>
+                        <div class="col-md-5" *ngIf="item[1]"><button type="button" class="btn btn-link" (click)="getStatement(item[1])">{{getStatementDate(item[1])}}</button></div>
+                    </div>
+                </p-accordionTab>
+            </p-accordion>
+        </div>
+    </div>
+
+</div>
+
+<div>
+    <p-dialog [(visible)]="displayStatement" [modal]="true" [responsive]="true" appendTo="body">
+        <p-header>
+            <button id="bPrint" (click)="print()" pButton icon="fa-print" iconPos="left" label="Print"></button>
+        </p-header>        
+        <fieldset class="scheduler-border">
+            <legend class="scheduler-border">Statement</legend>           
+            <div id="statementDetaiContent" class="statementDiv" [innerHTML]="statement">
+             
+            </div>           
+        </fieldset>
+    </p-dialog>
+</div>

@@ -1,0 +1,16 @@
+.newLineDiv {
+    position: relative;
+    background: white;
+    width: 100%;
+    min-width: 315px;
+    margin: 16px 0 0 0;
+}
+
+.xmlDiv {
+    max-height: 400px;
+    height: auto !important;
+    height: 400px;
+    width: 500px;
+    overflow-y: scroll;
+    overflow-x: scroll;
+}

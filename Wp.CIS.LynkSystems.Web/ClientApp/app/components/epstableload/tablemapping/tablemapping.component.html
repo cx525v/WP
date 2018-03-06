@@ -1,0 +1,189 @@
+﻿<div>
+    <div class="x_panel">     
+        <div class="x_content">
+            <div class="row">                 
+                <div style="margin-left:16px; margin-bottom:4px;">
+                <button id="bCopy" class="btn btn-primary" (click)="copy()">Copy mapping from</button>
+            <p-dropdown id="pDropdownVersion" [options]="Versions" [(ngModel)]="selectedBasisVersion" [style]="{'width':'160px;'}" placeholder="Please select a version" ng-required="true" [filter]="true" responsive="true" >
+                <ng-template let-version pTemplate="item">
+                    <div class="ui-helper-clearfix" style="position: relative;height: 25px;">
+                        <div  style="font-size:14px;margin-top:4px">
+                            {{version.label}}                        
+                        </div>
+                    </div>
+                </ng-template>
+            </p-dropdown>
+            </div>
+            
+           </div>
+        </div>
+    </div>
+</div>
+<p-growl [(value)]="msgs"></p-growl>
+<div>
+    <div class="ui-widget-header" style="padding:4px 10px;border-bottom: 0 none;">
+        <i class="fa fa-search" style="margin:4px 4px 0 0"></i>
+        <input id="filterInput" #gb type="text" pInputText size="50" placeholder="Global Filter">
+    </div>
+     <p-dataTable id="datatableMapping" #datatableMapping 
+                  [value]="dataSource" 
+                  [rows]="10" 
+                  [paginator]="true" 
+                  [globalFilter]="gb" 
+                  [responsive]="true" 
+                  [tableStyle]="{'table-layout':'auto'}"                 
+                  resizableColumns="true">
+        
+         <p-column styleClass="col-button">
+             <ng-template pTemplate="header">
+                 <button type="button" pButton icon="fa-pencil-square-o"></button>
+             </ng-template>
+             <ng-template let-mapping="rowData" pTemplate="body">
+                 <button type="button" pButton (click)="SelectMapping(mapping)" icon="fa-pencil-square-o"></button>
+             </ng-template>
+         </p-column>
+
+         <p-column field="pdlFlag" header="PDL Flag" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"> </p-column>
+         <p-column field="paramName" header="Param Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"> </p-column>
+
+         <p-column field="viperTableName" header="ViperTableName" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="viperFieldName" header="ViperFieldName" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="viperCondition" header="ViperCondition" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="worldPayTableName" header="WorldPayTableName" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="worldPayFieldName" header="WorldPayFieldName" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="worldPayJoinFields" header="WorldPayJoin Fields" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="worldPayCondition" header="WorldPayCondition" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="worldPayOrderBy" header="WorldPayOrderBy" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="worldPayFieldDescription" header="WorldPayFieldDescitpion" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="effectiveBeginDate" header="EffectiveDate" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="effectiveEndDate" header="EndDate" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+         <p-column field="charStartIndex" header="Char Start Index" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"> </p-column>
+         <p-column field="charLength" header="Char Length" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"> </p-column>
+     <p-footer>
+            <div class="ui-helper-clearfix" style="width:100%">
+                <button type="button" id="bAddNew" pButton icon="fa-plus" style="float:left" (click)="showDialogToAdd()" label="Add Mapping"></button>
+                <!--<button type="button" id="bUpload" pButton icon="fa-upload" style="float:right" (click)="showUploadDialog()" label="Upload From File"></button>-->
+            </div>
+           
+        </p-footer>
+
+    </p-dataTable>
+   
+    <p-dialog id="mappingDialog" header="Table Mapping" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true">
+        <div class="ui-grid ui-grid-responsive ui-fluid mappingDiv" *ngIf="mapping">     
+                       
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="pdlFlag">PDL Flag</label></div>
+                <div class="ui-grid-col-9">
+                    <p-checkbox pInputText id="pdlFlag" [(ngModel)]="mapping.pdlFlag" binary="true" ></p-checkbox>
+                </div>
+            </div>
+
+            <div class="ui-grid-row" *ngIf="mapping.pdlFlag">
+                <div class="ui-grid-col-6"><label for="paramName" class="required">PDL Param Name</label></div>
+                <div class="ui-grid-col-9">
+                    <p-dropdown id="pParamDropdownlist" [options]="paramDropdownItems | sort:'label': false" [(ngModel)]="selectedParam" [style]="{'width':'200px;'}" placeholder="Please select a Parameter" [filter]="true" responsive="true" [required]="true" (onChange)="change($event)">
+                    </p-dropdown>             
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="viperTableName" class="required">ViperTableName</label></div>
+                <div class="ui-grid-col-9"><input pInputText id="viperTableName" [(ngModel)]="mapping.viperTableName" required/></div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="viperFieldName" class="required">ViperFieldName</label></div>
+                <div class="ui-grid-col-9"><input pInputText id="viperFieldName" [(ngModel)]="mapping.viperFieldName"  required/></div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="viperFieldName">ViperCondition</label></div>
+                <div class="ui-grid-col-9"><input pInputText id="viperCondition" [(ngModel)]="mapping.viperCondition"/></div>
+            </div>          
+
+            <div *ngIf="!mapping.pdlFlag">
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6"><label for="worldPayTableName" class="required">WorldPayTableName</label></div>
+                    <div class="ui-grid-col-9"><input pInputText id="worldPayTableName" [(ngModel)]="mapping.worldPayTableName"  required/></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6"><label for="worldPayFieldName" class="required">WorldPayFieldName</label></div>
+                    <div class="ui-grid-col-9"><input pInputText id="worldPayFieldName" [(ngModel)]="mapping.worldPayFieldName"  required/></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6"><label for="worldPayCondition">WorldPayCondition</label></div>
+                    <div class="ui-grid-col-9"><input pInputText id="worldPayCondition" [(ngModel)]="mapping.worldPayCondition"/></div>
+                </div>
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6"><label for="worldPayOrderBy">WorldPayOrderBy</label></div>
+                    <div class="ui-grid-col-9"><input pInputText id="worldPayOrderBy" [(ngModel)]="mapping.worldPayOrderBy"/></div>
+                </div>   
+
+                <div class="ui-grid-row">
+                    <div class="ui-grid-col-6"><label for="worldPayJoinFields">WorldPayJoinFields </label></div>
+                    <div class="ui-grid-col-9"><input pInputText id="worldPayJoinFields" [(ngModel)]="mapping.worldPayJoinFields"/></div>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="worldPayFieldDescription">WorldPayFieldDescription</label></div>
+                <div class="ui-grid-col-9"><input pInputText id="worldPayFieldDescription" [(ngModel)]="mapping.worldPayFieldDescription" /></div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="effectiveDate" class="required">Effective Begin Date</label></div>
+                <div class="ui-grid-col-9">
+                    <p-calendar id="effectiveBeginDate" [(ngModel)]="effectiveBeginDate" [showIcon]="true" [required]="true"></p-calendar>
+                </div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="effectiveEndDate" class="required">Effective End Date</label></div>
+                <div class="ui-grid-col-9">
+                  <p-calendar id="effectiveEndDate" [(ngModel)]="effectiveEndDate" [showIcon]="true" [required]="true"></p-calendar>
+                </div>
+            </div>   
+
+            <div class="ui-grid-row" *ngIf="!isEffectiveDateValid()">
+                <div class="ui-grid-col-6"></div>
+                <div class="ui-grid-col-9"><label class="validationError"> Effective Date is invalid!</label></div>
+            </div>
+
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="charStartIndex">Char Start Index</label></div>
+                <div class="ui-grid-col-9"><input [OnlyNumber]="true" pInputText id="charStartIndex" [(ngModel)]="mapping.charStartIndex" pattern="^\d*$"/></div>
+            </div>
+
+            <div class="ui-grid-row">
+                <div class="ui-grid-col-6"><label for="charLength ">Char Length</label></div>
+                <div class="ui-grid-col-9"><input [OnlyNumber]="true" pInputText id="charLength " [(ngModel)]="mapping.charLength" pattern="^\d*$"/></div>
+            </div>
+          
+        </div>
+
+        <p-footer>
+            <div class="ui-dialog-buttonpane ui-helper-clearfix">
+              <button type="button" id="bSave" pButton icon="fa-check" (click)="save()" label="Save" [disabled]="!isFormValid()"></button>
+            </div>
+        </p-footer>
+    </p-dialog> 
+</div>
+
+<p-confirmDialog id="pConfirnationDialog" header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+
+<div *ngIf="displayUploadDialog" style="border:ridge">
+    <uploadmapping></uploadmapping>
+</div>
+
+<loading [loading]="loading"></loading>
+
+
+
+
+

@@ -1,0 +1,99 @@
+@media (min-width: 767px) {
+    /* On small screens, the nav menu spans the full width of the screen. Leave a space for it. */
+    .body-content {
+        padding-top: 50px;        
+        overflow-y: auto;
+        overflow-x: auto;
+    }
+    .logocontent {
+        position: fixed;        
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+    .top-nav-content {
+        display: inline-block;
+        font-size: 16px;
+    }
+
+
+    .strip-content {
+        width: 100%;
+        background-color: #f11e15;
+    }
+
+    .searched-detailed-content {
+        height: auto;
+        padding-top: 60px;
+        padding-bottom: 20px;
+    }
+
+    .search-content {
+        padding-top: 20px;
+        width: 160px;
+        font-size: 16px;
+    }
+
+    
+    .search-link-push-lg {
+        padding-top: 18px;
+    }
+    
+ }
+
+.logocontent {
+    position: fixed;
+    display: block;
+    padding-left: 20px;
+    padding-top: 10px;
+    padding-bottom: 10px;
+}
+
+.row1 {
+    padding-left: -35px;
+    padding-right: 15px;   
+    padding-bottom: 5px;
+    margin-right: auto;
+    margin-left: auto;
+}
+
+
+
+.search-content {     
+    width: 140px;
+    font-size: 16px;
+}
+
+.strip-content {
+    width: 100%;
+    background-color: #f11e15; 
+}
+.search-link-push-sm{
+    padding-top: 50px;
+}
+.search-content-pushed {
+    padding-top: 18px;    
+}
+
+.searched-detailed-content {
+    padding-top: 12px;
+    padding-bottom: 20px;
+    height: auto;
+}
+.hideStripBar {
+    display: none;
+}
+
+.showStripBar {
+    display: inline;
+}
+
+.ui-growl {
+    position: relative !important;
+    left: 30% !important;
+    top: 40% !important;
+}
+
+.appContainer {  
+    background-color: rgb(247, 247, 247);   
+}

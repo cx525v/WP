@@ -1,0 +1,31 @@
+﻿<div>
+    <p-accordion>
+        <p-accordionTab header="Memos" [selected]="selected">
+            <div>
+              <div class="row">
+        <div class="col-md-4">
+            <div style="padding-left:24px;">              
+                <ul>
+                    <li><input type="radio" name="memo" value="all" (change)="checked($event)" #allmemos id="allmemos"> All({{allMemos?.length}})</li>
+                    <li><input type="radio" name="memo" value="group"  (change)="checked($event)" #groupmemos id="groupmemos"> Group({{memoList?.groupMemo?.length}})</li>
+                    <li><input type="radio" name="memo" value="customer" (change)="checked($event)" #customermemos id="customermemos"> Customer({{memoList?.customerMemo?.length}})</li>
+                
+                    <li *ngIf="merchantDisabled"><input type="radio" name="memo" value="merchant"  disabled ="disabled" (change)="checked($event)" #merchantmemos id="merchantmemos"> Merchant({{memoList?.merchMemo?.length}})</li>      
+                    <li *ngIf="!merchantDisabled"><input type="radio" name="memo" value="merchant" (change)="checked($event)" #merchantmemos id="merchantmemos"> Merchant({{memoList?.merchMemo?.length}})</li>                
+
+                    <li *ngIf="terminalDisabled"><input type="radio" name="memo" value="terminal" disabled ="disabled" (change)="checked($event)" #terminalmemos id="terminalmemos"> Terminal({{memoList?.termMemo?.length}})</li>          
+                    <li *ngIf="!terminalDisabled"><input type="radio" name="memo" value="terminal" (change)="checked($event)" #terminalmemos id="terminalmemos"> Terminal({{memoList?.termMemo?.length}})</li>
+
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-8" style="height:180px;overflow-y: auto; padding-right:24px;">
+            <div>
+                <memo-list [memos]="memos"></memo-list>
+            </div>
+        </div>
+    </div>
+            </div>
+       </p-accordionTab>
+    </p-accordion>     
+</div>    

@@ -1,0 +1,43 @@
+﻿<div class="memoListItem_div" >
+        <div class="row">
+            <div class="col-md-12">
+                <div style="padding-left:8px;">
+                    <label id="lTitle">{{item.categoryDesc}}</label>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12">  
+                <div class="fiveLines_div">
+                    <span id="sMemo">{{item.memo}}</span>
+                </div>                        
+            </div>
+        </div>
+      
+        <div class="row" >
+            <div class="detail_button">
+                <button type="button" id="bDetail" class="btn btn-link" (click)="displayDetails()">DETAILS</button>     
+            </div>          
+        </div>
+</div>
+
+
+<p-dialog [(visible)]="showDetail" appendToBody="true">
+    <div  class="detail_div">
+        <p-header>
+            <label id="dltitle">{{item.categoryDesc}}</label>
+        </p-header>
+        <div class="row">
+            <div class="col-md-12">
+                <div > 
+                  <pre><span id="dsMemo">{{item.memo}}</span></pre>  
+               </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="bookmark">
+                <!--<span>BOOKMARK</span>-->
+            </div>
+        </div>
+    </div>
+</p-dialog>

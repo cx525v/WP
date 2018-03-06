@@ -1,0 +1,542 @@
+﻿
+<h2>Transaction Inquiry</h2>
+
+<div class="row" *ngIf="_errorMessage?.length > 0">
+    <div class="alert alert-danger">
+        {{_errorMessage}}
+    </div>
+</div>
+
+<div class="row">
+
+    <div class="col-md-12">
+
+        <div class="row">
+
+            <div class="col-sm-12 col-md-6 form-group">
+
+                <label>Customer:</label>
+                
+                <label id="terminalCustomerNumber" class="form-control transactionLabelStyle" >{{_transactionInfoModel?.customerNbr}}</label>
+            </div>
+            <div class="col-sm-12 col-md-6 form-group">
+                <label>Version:</label>
+                
+                <label id="terminalVersion" class="form-control transactionLabelStyle">Unknown mapping: find out</label>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-sm-12 col-md-6 form-group">
+                <label>Merchant:</label>
+                
+                <label id="terminalMerchant" class="form-control transactionLabelStyle" >{{_transactionInfoModel?.merchantNbr}}</label>
+            </div>
+            <div class="col-sm-12 col-md-6 form-group">
+                <label>Terminal:</label>
+                <input id="terminalIdNumber" class="form-control" type="text" [(ngModel)]="_newTerminalId" />
+                
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="col-md-12" >
+                <button id="theApplyTerminalIdButton" pButton (click)="applyTerminalId()" [disabled]="_newTerminalId?.length < 1" label="Apply Terminal ID"></button>
+            </div>
+        </div>
+
+    </div>
+
+</div>
+
+<div class="terminalInfoSectionStyle">
+    
+    <div class="row">
+
+        <p-panel id="terminalInfoPanel" header="Terminal Details" toggleable="true" collapsed="true">
+
+                <div class="col-sm-12 col-md-12 form-horizontal terminalInfoSectionInsidePanelStyle">
+
+                    <div class="row">
+
+                        <div class="form-group">
+                            <div class="col-sm-12 col-md-2"><label>Name:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="terminalName" class="form-control transactionLabelStyle">{{_transactionInfoModel?.name}}</label>
+                            </div>
+
+                            <div class="col-sm-12 col-md-2"><label>Business:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="businessDescription" class="form-control transactionLabelStyle">{{_transactionInfoModel?.businessDesc}}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row ">
+
+                        <div class="form-group">
+
+                            <div class="col-sm-12 col-md-2"><label>Address:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="theTerminalAddress" class="form-control transactionLabelStyle">{{_transactionInfoModel?.address}}</label>
+                            </div>
+
+                            <div class="col-sm-12 col-md-2"><label>Services:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="terminalServices" class="form-control transactionLabelStyle">{{_transactionInfoModel?.services}}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row ">
+
+                        <div class="form-group">
+
+                            <div class="col-sm-12 col-md-2"><label>City, ST, Zip:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="theCityStateAndZip" class="form-control transactionLabelStyle">{{_transactionInfoModel?.city}}, {{_transactionInfoModel?.state}}, {{_transactionInfoModel?.zipcode}}</label>
+                            </div>
+
+                            <div class="col-sm-12 col-md-2"> <label>Status:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="terminalStatusDesc" class="form-control" [ngClass]="{'statusActiveStyle': isStatusActive()}">{{_transactionInfoModel?.statusDesc}}</label>
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                    <div class="row ">
+
+
+                        <div class="form-group">
+
+                            <div class="col-sm-12 col-md-2"><label>SIC:</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="theSicCode" class="form-control transactionLabelStyle">{{_transactionInfoModel?.sicCode}}</label>
+                            </div>
+
+                            <div class="col-sm-12 col-md-2"><label>Last Processed Date</label></div>
+                            <div class="col-sm-12 col-md-4">
+
+                                <label id="theLastProcessedDate" class="form-control transactionLabelStyle">{{_transactionInfoModel?.lastDepositDate | date:'short'}}</label>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+        </p-panel>
+
+    </div>
+
+</div>
+
+<div class="row terminalInfoSectionInsidePanelStyle" >
+   
+
+        <p-panel id="terminalSearchTransactionsPanel" header="Transaction Search" toggleable="true" collapsed="true">
+
+            <div class="row">
+
+                <form [formGroup]="_searchForm" class="form-horizontal searchTransactionsFormStyle" name="searchForm" >
+
+                   <div class="form-group">
+
+                       <div class="col-sm-12 col-md-3">
+
+                           <label>Search Criteria:</label>
+
+                           <div>                               
+                               <p-dropdown id="ddlSearchCriteria" [options]="_searchCriteriaOptions"
+                                           formControlName="searchCriteriaOptions"
+                                           name="searchCriteriaOptions"
+                                            [style]="{'width':'auto', 'padding-right': '10px', 'padding-left': '10px'}"
+                                   ></p-dropdown>
+                           </div>
+                           
+                       </div>
+
+                       <div class="col-sm-12 col-md-4 processDateRangeStyle" >
+                           <label>Process Date Range (required):</label>
+                           <div>
+
+                               <!--[minDate]="_beginDateMin"
+                               [maxDate] ="_beginDateMax"
+                               readonlyInput="readonlyInput"-->
+                               <p-calendar 
+                                           id="beginSearchDate"
+                                           [inline]="false" 
+                                           
+                                           (onSelect)="beginDateRangeChangedHandler(value)"
+                                           [style]="{'width': '10em'}"
+                                           [inputStyle]="{'width': '10em'}" 
+                                           name="beginDateRangeCalendar"
+                                           formControlName="beginDateRangeCalendar"
+                                   ></p-calendar>
+ 
+                               <!--[minDate]="_endDateMin"
+                               [maxDate]="_endDateMax"
+                               readonlyInput="readonlyInput"-->
+                               <p-calendar 
+                                           id="endSearchDate"
+                                           [inline]="false"
+                                           (onSelect)="endDateRangeChangedHandler(value)"
+                                           [style]="{'width': '10em'}"
+                                           [inputStyle]="{'width': '10em'}" 
+                                           name="endDateRangeCalendar"
+                                           formControlName="endDateRangeCalendar"
+                                   >
+                               </p-calendar>
+                           </div>
+                           <div>
+                               <div id="errorBeginSearchDate" *ngIf="_searchForm.controls.beginDateRangeCalendar.touched && !_searchForm.controls.beginDateRangeCalendar.valid"
+                                    class="alert alert-danger">
+                                   The begin search date is required
+                               </div>
+
+                               <div id="errorEndSearchDate" *ngIf="_searchForm.controls.endDateRangeCalendar.touched && !_searchForm.controls.endDateRangeCalendar.valid"
+                                    class="alert alert-danger">
+                                   The end search date is required
+                               </div>
+
+                               <div id="error32Days" *ngIf="!checkValidDateRange()"
+                                    class="alert alert-danger">
+                                   The search dates are requires to be within 32 days
+                               </div>   
+                               
+
+                               <div id="errorBeginBeforeEnd" *ngIf="!checkEndDateAfterBeginDate()"
+                                    class="alert alert-danger">
+                                   The end date must be equal to or after the beginning date.
+                               </div>                   
+
+                           </div>
+                       </div>
+
+                       
+                       <div class="col-sm-12 col-md-3 cardNumberSectionStyle" >
+                           <label>Card Number (first 6 then last 4)</label>
+                           <div>
+                               
+                               <!--OnlyNumber="true"-->
+                               <input 
+                                      id="firstSix"
+                                      type="text" 
+                                      
+                                      pInputText 
+                                      class="firstSixInputStyle"
+                                      maxlength="6" 
+                                      name="cardNumberFirstSix"
+                                      formControlName="cardNumberFirstSix"
+                                      />
+                               <span>xxxx</span>
+                               
+                               <!--OnlyNumber="true"-->
+                               <input 
+                                      id="lastFour"
+                                      type="text" 
+                                      
+                                      pInputText 
+                                      class="lastFourInputStyle"
+                                      maxlength="4"  
+                                      name="cardNumberLastFour"
+                                      formControlName="cardNumberLastFour"
+                                      />
+
+                            </div>
+                                                      
+                           <div class="" >
+                               <div class="form-group creditCardTypeStyle">
+                                   
+                                   <p-radioButton name="groupname" value="1" formControlName="cardNumberType" label="T" [style]="{ 'margin-right': '1em' }"></p-radioButton>
+                                   
+                                   <p-radioButton name="groupname" value="2" formControlName="cardNumberType" label="M" [style]="{ 'margin-left': '1em', 'margin-right': '1em' }" ></p-radioButton>
+                                   
+                                   <p-radioButton name="groupname" value="3" formControlName="cardNumberType" label="C" [style]="{ 'margin-left': '1em', 'margin-right': '1em' }" ></p-radioButton>
+                               </div>
+                           </div>
+
+
+                           <div>
+                               <div id="errorFirstSix" *ngIf="_searchForm.controls.cardNumberFirstSix?.errors?.pattern"
+                                    class="alert alert-danger">
+                                   The first six characters must be either 0 or 6 valid cc numeric characters
+                               </div>
+                               <div id="errorlastFour" *ngIf="_searchForm.controls.cardNumberLastFour?.errors?.pattern"
+                                    class="alert alert-danger">
+                                   The last 4 characters must be either 0 or 4 numeric characters
+                               </div>
+                               <div id="errorFirstSixLastFour" *ngIf="(false === cardNumberValidationRule())"
+                                    class="alert alert-danger">
+                                   Both the first 6 and the last 4 numbers of the credit card must be supplied
+                               </div>
+                           </div>
+
+                       </div>
+
+                       <div class="col-sm-12 col-md-2 pull-left">
+                           <label>Batch Number</label>
+                           <div>
+                               
+                               <input 
+                                      id="batchNumber"
+                                      type="text" 
+                                      pInputText 
+                                      
+                                      maxlength="10" 
+                                      class="batchNumberInputStyle"
+                                      name="batchNumberInput" 
+                                      formControlName="batchNumberInput"
+                                      />
+                           </div>
+                           <div>
+                               <div id="errorBatchNumber" *ngIf="false === cardNumberBatchNumberValidationRule()"
+                                    class="alert alert-danger">
+                                   Only the card number or batch number can be used, not both.
+                               </div>
+                           </div>                       
+                       </div>
+   
+
+                   </div>
+
+                    <div >
+                        <label></label>
+                        <div>
+                            <!---->
+                            <button id="theSearchNowButton" pButton type="button" label="Search Now" (click)="applySearchCriteria()" [disabled]="shouldDisableSearchButton()" ></button>
+                        </div>
+
+                    </div>
+
+                </form>    
+
+            </div>
+
+            <!--<div class="row" style="margin-right:-15px;padding:0;">
+
+                <div class="form-inline" style="width:100%;margin:0;padding:0;">
+
+                    <div class="form-group" style="width:100%;margin-right:-15px;padding:0;">
+                        <div class="col-sm-6 col-md-3">
+                            <label class="">Consolidation</label>
+                        </div>
+                        
+                        <div class="col-sm-6 col-md-3">
+                            <label class="">{{_consolidationValue}}</label>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3">
+                            <label for="exampleInputEmail2" class="">Last Search Elapsed Time</label>
+                        </div>
+
+                        <div class="col-sm-6 col-md-3">
+                            <label class="">{{_elapsedTime}}</label>
+                        </div>
+                        
+                    </div>
+
+                </div>
+                <div class="col-md-12">
+                    <label>Search Page Totals:</label>
+                </div>
+                <div class="form-inline" style="width:100%;">
+                   
+
+                        <div class="form-group"  style="width:100%;">
+                            
+                            <div class="col-sm-6 col-md-3">
+                                <label for="exampleInputEmail2" class="">Tran. Cnt</label>
+                            </div>
+                            
+                            <div class="col-sm-6 col-md-3">
+                                <label for="exampleInputEmail2" class="">{{_tranCntValue}}</label>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3">
+                                <label for="exampleInputEmail2" class="">Tran. Amt</label>
+                            </div>
+
+                            <div class="col-sm-6 col-md-3">
+                                <label for="exampleInputEmail2" class="">{{_tranAmtValue | currency:'USD':true }}</label>
+                            </div>
+                            
+                        </div>                    
+
+
+                </div>
+
+            </div>-->
+
+            <div class="row" >
+
+                <p-dataTable 
+                             id="searchDataTable"
+                             [value]="_gridDataSource" 
+                             [rows]="10" 
+                             [paginator]="true" 
+                             [globalFilter]="gb" 
+                             [responsive]="false" 
+                             [lazy]="true" 
+                             (onLazyLoad)="loadData($event)" 
+                             [totalRecords]="_totalRecords"
+                             [scrollable]="true"
+                             [(first)]="first"
+                             [resizableColumns]="true"
+                             [reorderableColumns]="true"
+                             >
+
+                    <p-column field="cardName" header="Cardholder" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}"  >
+                    </p-column>
+
+                    <p-column field="expirationDate" header="Exp Date" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}"  >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | date:'short' }}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="cardType" header="Card Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="tranType" header="Tran Code" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="posEntryModeDesc" header="POS Entry" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}"  ></p-column>
+
+                    <p-column field="settledAmount" header="Sett Amount" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | currency:'USD':true }}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="cashBackAmount" header="Cashback Amount" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | currency:'USD':true}}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="originalAuthAmount" header="Auth. Amount" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | currency:'USD':true}}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="grossTranAmountPaid" header="Paid Amt" [filter]="false" filterMatchMode="contains" filterPlaceHolder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | currency:'USD':true}}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="paidDate" header="Paid Date" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | date:'short' }}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="authRespCode" header="Auth. Response" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="authType" header="Auth. Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="authNetwork" header="Auth. Network" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="authDateTime" header="Auth. Date" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | date:'short' }}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="processingDate" header="Process Date" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>{{car[col.field] | date:'short' }}</span>
+                        </ng-template>
+
+                    </p-column>
+
+                    <p-column field="seqNo" header="Sequence" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="issAuth" header="Issuer Auth." [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" >
+
+                        <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                            <span>Unresolved mapping: iisAuth</span>
+                        </ng-template>
+                    </p-column>
+
+                    <p-column field="visaTranRefNo" header="Network Ref. No." [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="avsResponseCode" header="AVS Response" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="commTypeDesc" header="Comm Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="captureTypeDesc" header="Capture Type" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="arn" header="ARN" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="errorCode" header="Risk Code" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="reasonCD1" header="Reason Code" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="cardQualDesc" header="Card Qualification" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="externalID" header="ExternalID" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="rtcIndicator" header="RTCIndicator" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="decryptData" header="DecryptData" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="cvmDescription" header="CVM Code" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}" ></p-column>
+
+                    <p-column field="netID" header="NetTID" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}"  ></p-column>
+
+                    <p-column field="fullDeviceID" header="fullDeviceID" [filter]="false" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="false" [style]="{'width':'200px'}"  ></p-column>
+
+                </p-dataTable>
+
+            </div>
+
+        </p-panel>
+
+
+
+</div>
+
+<p-dialog id="terminalNotFoundDialog" [(visible)]="_displayTerminalNotFoundDialog" [modal]="true">
+    <p-header>
+        Terminal not found in system
+    </p-header>
+    The terminal was not found in the system. Returning to the previous selected terminal
+    <p-footer>
+        <button pButton (click)="terminalNotFoundDialogOkButtonHandler()" label="OK"></button>
+    </p-footer>
+</p-dialog>
+
+

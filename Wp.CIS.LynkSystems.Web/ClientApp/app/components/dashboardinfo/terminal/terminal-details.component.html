@@ -1,0 +1,48 @@
+﻿<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+<div id="terminaldetail"style="padding-top:20px; padding-left:40px;" *ngIf="terminal && terminal.terminalDetails && terminal.activeServices && terminal.terminalInfo">
+    <div class="row">
+        <div>
+            <label id="lTerminal">TERMINAL: {{tid}}</label><button type="button" id="bDetail" class="btn btn-link" (click)="showDetail()">(DETAILS)</button>
+        </div>
+    </div>
+    <div class="row" style="margin-top:8px;">
+        <div>
+            <span>Auto Settlement Time:</span> <span style="font-weight:bold" id="autoSettlementTime">{{getCutOff(terminal.terminalDetails.autoSettleTime)}}</span>
+        </div>
+    </div>
+
+    <div class="row"  style="margin-top:4px;">
+        <div>
+            <span>Debit Cut-Off:</span> <span style="font-weight:bold" id="cutOffTime">{{getCutOff(terminal.terminalDetails.cutOffTime)}}</span> <span style="font-weight:bold" id="timeZone">{{terminal.terminalDetails.timeZone}}</span>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:4px;">
+        <div>
+            <span>Last Settlement:</span> 
+            <span style="font-weight:bold" id="lastProcessingDt">{{terminal.activeServices.lastProcessingDt | datemdy }};</span> 
+            <span style="font-weight:bold" id="settleAmount">${{terminalSettlementInfo?.grossAmt | number:'1.2-2'}};</span> 
+            <span style="font-weight:bold" id="settleTransactions">{{terminalSettlementInfo?.nbrOfTrans}}</span> 
+            <span style="font-weight:bold">Transactions</span>
+        </div>
+    </div>
+
+    <div class="row" style="margin-top:4px;">
+        <div class="inline"><span>Services:</span></div>
+        <div class="inline">
+            <div class="ServicesDiv">
+                <span style="font-weight:bold" id="activeServiesDesc">{{terminal.services }}</span>
+            </div>
+        </div>
+    </div>
+    <div class="row" style="margin-top:4px;">
+        <div>
+            <span>Equip. Rep. &amp; Supplies:</span> <span style="font-weight:bold" id="equipmentSupplies">{{terminal.terminalDetails.lynkAdvantageDesc}}</span>
+        </div>
+    </div>
+</div>
+<p-dialog [(visible)]="displayDetail" [modal]="true" [responsive]="true">
+    <div>
+        <terminal-details-dialog [detail]="detail" [sensitivityInfo]="sensitivityInfo"></terminal-details-dialog>
+    </div>
+</p-dialog>

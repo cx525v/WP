@@ -1,0 +1,73 @@
+﻿<loading [loading]="_displayLoadingDialog"></loading>
+<div class="alert alert-danger" *ngIf="_errorMessage">
+    {{_errorMessage}}
+</div>
+<div *ngIf="_customerProfile">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <dashboard-memo  [searchParamsPk]="_searchParamsPk"></dashboard-memo>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <dashboard-title [LidRecordName]="_merchantProfile?.mchName" [LidRecordId]="_merchantProfile?.merchantNbr" [CustomerName]="_customerProfile?.custName"></dashboard-title>
+        </div>
+    </div>
+   
+    <div class="row">
+        <div style="margin-top:20px;"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+
+            <div class="row">
+                <div class="col-md-1"></div>
+                <div class="col-md-5">
+                    <account-info [accountInfo]="accountInfo"></account-info>
+                </div>
+                <div class="col-md-5">
+                    <business-info [businessInfo]="businessInfo" [ismerchant]="ismerchant"></business-info>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div style="padding-left:32px; padding-top:20px;">
+                    <customer-merchant [customerContacts]="customerContacts" [merchantContacts]="merchantContacts"  [ismerchant]="ismerchant"  [searchParamsPk]="_searchParamsPk"></customer-merchant>
+                </div>
+            </div>
+            <div class="row"> 
+                <div style="padding-left:32px; padding-top:20px;">
+                    <case-history [caseHistory]="casehistory" [TotalNumberOfCaseHistoryRecords]="_totalNumberOfCaseHistoryRecords" [LidType]="_searchParamsPk.lidType" [LidValue]="_searchParamsPk.lidIdPk" ></case-history>
+                </div>
+            </div>
+            <div class="row">
+                <div style="padding-left:32px; padding-top:20px;" >
+                    <banking-info [terminalNbr]="terminalNbr"></banking-info>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div class="row" style="padding-right:24px;">
+                <div class="col-md-12 col-lg-12">
+                    <terminal-equipment [parent]="self"></terminal-equipment>
+                </div>               
+                <div class="col-md-12 col-lg-12">
+                    <terminal-details [terminalNbr]="terminalNbr"></terminal-details>
+                </div>
+                    <div class="col-md-12 col-lg-12">
+                        <transactions [terminalNbr]="terminalNbr" [terminalID]="terminalID"></transactions>
+                    </div>
+                    <!--<div class="col-md-12 col-lg-12">
+                        <banking-info></banking-info>
+                    </div>-->
+             
+                <div class="col-md-12 col-lg-12">
+                    <recent-statements [merchantNbr]="merchantNbr"></recent-statements>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</div>

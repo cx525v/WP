@@ -1,0 +1,62 @@
+﻿
+<loading [loading]="_displayLoadingDialog"></loading>
+
+<div class="alert alert-danger" *ngIf="_errorMessage">
+    {{_errorMessage}}
+</div>
+
+<div *ngIf="_customerProfile">
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <dashboard-memo  [searchParamsPk]="_searchParamsPk"></dashboard-memo>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 col-lg-12">
+            <dashboard-title [LidRecordName]="_customerProfile?.custName" [LidRecordId]="_customerProfile?.customerNbr"></dashboard-title>
+        </div>
+    </div>
+    <div class="row">
+        <div style="margin-top:20px;"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-1">
+
+        </div>
+        <div class="col-md-3">
+            <account-info [accountInfo]="accountInfo"></account-info>
+        </div>
+        <div class="col-md-3">
+            <business-info [businessInfo]="businessInfo"></business-info>
+        </div>
+        <div class="col-md-4">
+            <sensitivity-partner [sensitivityPartner]="sensitivityPartner"></sensitivity-partner>
+        </div>
+    </div>
+    <div class="row">
+        <div style="margin-top:20px;"></div>
+    </div>
+    <div class="row">
+        <div class="col-md-6">
+            <div style="padding-left:24px;">
+                <div>
+                    <customer-merchant [customerContacts]="customerContacts" [searchParamsPk]="_searchParamsPk"></customer-merchant>
+                </div>
+                <div>
+                    <case-history [caseHistory]="casehistory" [TotalNumberOfCaseHistoryRecords]="_totalNumberOfCaseHistoryRecords" [LidType]="_searchParamsPk.lidType" [LidValue]="_searchParamsPk.lidIdPk" ></case-history>
+                </div>
+            </div>
+
+        </div>
+        <div class="col-md-6">
+            <div style="padding-right:24px;">
+                <div>
+                    <merchant-locations [merchantLocations]="merchantLocations" [searchParamsPk]="_searchParamsPk" [totalMerchantRecords]="_totalMerchantRecords"></merchant-locations>
+                </div>
+                <div>
+                   
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

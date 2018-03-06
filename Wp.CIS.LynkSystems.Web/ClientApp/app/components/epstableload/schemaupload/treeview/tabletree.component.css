@@ -1,0 +1,25 @@
+﻿.RedLeaf .ui-treenode-label {
+    color: red !important;
+}
+
+.CommentLeaf .ui-treenode-label {
+    color: gray !important;
+}
+
+.HighlightLeaf .ui-treenode-label {
+    background-color: yellow !important;
+    color: red !important;
+}
+
+.UpdatedLeaf .ui-treenode-label {
+    background-color: none !important;
+    color: red !important;
+}
+
+.Leaf .ui-treenode-label {
+    background-color: none !important;
+    color: black !important;
+}
+
+
+

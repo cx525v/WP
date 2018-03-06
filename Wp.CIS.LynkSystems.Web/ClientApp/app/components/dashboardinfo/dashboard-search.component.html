@@ -1,0 +1,98 @@
+﻿<div class="container search_div">
+<div class="alert alert-danger" *ngIf="_errorMessages && _errorMessages.length > 0">
+    <div *ngFor="let currentError of _errorMessages" class="text-center">
+        {{currentError}}
+    </div>
+</div>
+
+
+  <div id="dashSearch" class="col-lg-5 dashSearchPanel">
+            <div class="x_panel">
+
+                <div class="x_title">
+
+                    <div class="clearfix"></div>
+                </div>
+
+                    <div class="container">
+                        
+                             <form [formGroup]="formData" >
+
+                                <div class="form-group">
+                                    <p-dropdown name="selectedValue"
+                                                [options]="searchList"
+                                                class="search-dropdown"
+                                                formControlName="selectedValue"
+                                                ng-required="true"
+                                                [autoWidth]="true"
+                                                placeholder=" Search by "
+                                                (onChange)="searchTypeChangedHandler($event)"
+                                                [filter]="false"
+                                                id="selectedValue"></p-dropdown>
+                                    <input id="selectId" name="selectId" formControlName="selectId" class="" placeholder="Search.." ng-required="true" pInputText />
+                                    
+                                    <button id="searchSubmit" name="searchSubmit" class="btn btn-success" [disabled]="!formData.valid" (click)="gotoDashboardPage()">Search</button>
+
+
+                                </div>
+
+                                <div *ngIf="7 === _selectedValueControl.value">
+
+                                    <div id="invalidCustomerNbrMsgParent" class="alert alert-danger" *ngIf="shouldDisplayCustomerIdMessage()">
+                                        
+                                        <span id="invalidCustomerNbrMsg" >Invalid Customer Nbr {{_lidControl.value}}, please try again</span>
+                                        
+                                    </div>
+
+                                    
+                                    <div id="customerIdMoreThan10MsgParent" *ngIf="shouldDisplayMaxLengthErrorMessage()" class="alert alert-danger">
+                                        <span id="customerIdMoreThan10Msg">Customer Number cannot be longer than 10 characters!</span>
+                                    </div>
+ 
+
+                                    <div id="onlyNumericValuesCustomerMsg" *ngIf="shouldDisplayOnlyNumbersErrorMessage()" class="alert alert-danger">
+                                        <span id="customerNumberTooLongMsg" >Only numeric values are valid for Customer Number.</span>
+                                    </div>
+
+                                </div>
+
+                                <div *ngIf="6 === _selectedValueControl.value">
+
+                                    <div id="merchantNbr15CharsMsgParent" *ngIf="shouldDisplayMerchantLengthErrorMessage()" class="alert alert-danger">
+                                        <span id="merchantNbr15CharsMsg" >Merchant Number must be 15 characters!</span>
+                                    </div>
+
+                                    <div id="onlyNumericCharsMerchantIdMsgParent" *ngIf="shouldDisplayMerchantOnlyNumbersErrorMessage()" class="alert alert-danger">
+                                        <span id="onlyNumericCharsMerchantIdMsg" >Only numeric values are valid for Merchant Number.</span>
+                                    </div>
+
+                                </div>
+
+                                 <div *ngIf="5 === _selectedValueControl.value">
+
+                                     <div id="invalidTerminalIdMsgParent" *ngIf="shouldDisplayTerminalNumbersErrorMessage()" class="alert alert-danger">
+                                         <span id="invalidTerminalIdMsg">You must enter a valid Terminal ID</span>
+                                     </div>
+
+                                 </div>
+
+                            </form>
+                    
+                       
+                    </div>
+                 
+                </div>
+            </div>
+ 
+    <div class="col-lg-6">
+        <div id="logoID" class="row1" style="margin-top:16px;">
+            <div class='col-lg-12 col-xs-12 '>
+                <img id="logo" [src]="LOGO"/>
+            </div>
+        </div>
+    </div>
+    <div class="col-lg-1" style="float:right;">
+        <menu id="menu"></menu>
+    </div>
+ </div>
+

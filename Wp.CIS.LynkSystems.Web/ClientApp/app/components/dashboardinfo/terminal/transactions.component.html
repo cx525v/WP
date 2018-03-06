@@ -1,0 +1,14 @@
+﻿<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div> 
+<div class="transactionsDiv" *ngIf="terminalID">
+    <label id="transactionLabel">Transactions</label>
+    <p-tabView orientation="top" id="pTableView">
+        <p-tabPanel header="SETTLED">
+            <transaction [terminalNbr]="terminalNbr" [terminalID]="terminalID" [isSettled]="true"></transaction>
+        </p-tabPanel>
+        <p-tabPanel header="ACQUIRED">
+            <transaction [terminalNbr]="terminalNbr" [terminalID]="terminalID" [isSettled]="false"></transaction>
+        </p-tabPanel>
+    </p-tabView>
+</div>
+
+

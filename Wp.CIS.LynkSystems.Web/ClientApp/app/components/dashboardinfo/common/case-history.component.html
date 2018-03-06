@@ -1,0 +1,58 @@
+﻿
+<div *ngIf="_errorMessage" class="alert alert-danger">
+    <span>{{_errorMessage}}</span>
+</div>
+
+
+<div class="CaseHistoryDiv">
+
+    <label>Case History</label>
+
+     <p-dataTable 
+                 [value]="_caseHistoryRecords"
+                 [totalRecords]="TotalNumberOfCaseHistoryRecords"
+                 [rows]="5"
+                 [paginator]="true"
+                 [globalFilter]="gb"
+                 [responsive]="true"
+                 [tableStyle]="{'table-layout':'auto'}"
+                 resizableColumns="true"
+                 [lazy]="shouldEnableLazyLoading()"
+                 (onLazyLoad)="loadPageOfDataInGrid($event)"
+                 [loading]="_caseHistoryRecordsLoading"
+                 sortField="createDate"
+                 sortOrder="-1"
+                 styleClass="borderless"
+                 id="caseHistoryGrid"
+                  >
+        <p-column>
+            <ng-template let-history="rowData" pTemplate="body">
+                <div *ngIf="history.hasAttachment">
+                    <i  class="fa fa-paperclip" aria-hidden="true"></i>
+                </div>
+            </ng-template>
+        </p-column>
+
+        <p-column field="caseLevel" header="Level" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="caseId" header="Case#" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="createDate" header="Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'overflow':'visible'}">
+
+            <ng-template pTemplate="filter" let-col>
+                <br />
+                <i class="fa fa-close" (click)="clearCreateDateFilter($event)"></i>
+                <p-calendar [(ngModel)]="_createDateFilter"
+                            styleClass="createdDateFilterStyle"
+                            showButtonBar="true"
+                            (onSelect)="createdDateFilterSelectedEventHandler($event, col, value)"
+                            appendTo="body"></p-calendar>
+            </ng-template>
+
+            <ng-template let-col let-car="rowData" let-ri="rowIndex" pTemplate="body">
+                <span>{{car.createDate | date:'short'}}</span>
+            </ng-template>
+        </p-column>
+        <p-column field="caseDesc" header="Description" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="orgDeptName" header="Origin Dept" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+
+    </p-dataTable>
+</div>

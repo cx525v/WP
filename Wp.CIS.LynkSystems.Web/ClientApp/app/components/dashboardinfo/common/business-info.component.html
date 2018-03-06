@@ -1,0 +1,38 @@
+﻿<div *ngIf="businessInfo" class="businessInfo">
+    <div class="row">
+        <div>
+            Fed Tax ID: <span id="businessInfocustFederalTaxID">{{businessInfo.custFederalTaxID}}</span>
+        </div>
+    </div>  
+    <div class="row">
+        <div>
+            Status: <span id="businessInfostatus">{{businessInfo.status}}</span>
+        </div>
+    </div>   
+
+    <div *ngIf="ismerchant">
+        <div class="row">
+            <div>
+                Industry: <span id="businessIndustry">{{businessInfo.industry}}</span>
+            </div>
+        </div>
+        <div class="row">
+            <div>
+                EBT Benefit Type: <span id="businessInfoBenefitType">{{businessInfo.ebtbenefitType}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                Acquiring Bank: <span id="businessInfoAcquiringBank">{{businessInfo.acquiringBank}}</span>
+            </div>
+        </div>
+
+        <div class="row">
+            <div>
+                SIC: <span id="businessInfoSIC">{{businessInfo.sic}}</span>
+            </div>
+        </div>
+    </div>
+
+</div>    

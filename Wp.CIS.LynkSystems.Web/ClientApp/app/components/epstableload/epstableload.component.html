@@ -1,0 +1,99 @@
+﻿<p-growl [(value)]="msgs" appendToBody="true"></p-growl>
+<div class="container-fluid">
+<div class="row">
+    <div style="font-size:small" *ngIf="displayVersion" class="col-md-6">
+        {{displayVersion.versionDescription}}   <label>Created on</label> {{displayVersion.createdDate | date:'yyyy-MM-dd'}} <label>by</label> {{displayVersion.createdByUser}}
+      </div>
+    <div style="float: right;"  class="col-md-6">
+        <label>Commander Version:</label>
+        <p-dropdown id="versiondropdown" [options]="commanderBasisVersions" [(ngModel)]="selectedBasisVersion"  ng-required="true" [filter]="true" responsive="true" [style]="{'width':'220px'}">
+                              <ng-template let-version pTemplate="item">
+                                  <div class="ui-helper-clearfix" style="position: relative;height: 25px; border-top-style:ridge" on-mouseover="mouseover(version)">
+                                      <div style="font-size:12px;margin-top:4px;position:absolute;">
+                                          {{version.label}}
+                                      </div>
+                                      
+                                      <span style="width:24px;float:right;">
+                                          <button class="btn btn-danger" style="font-size:xx-small" aria-label="Delete" (click)="delete(version)" title="delete">
+                                              <i class="fa fa-times" aria-hidden="true"></i>
+                                          </button>
+                                      </span>
+                                     
+                                  </div>
+                              </ng-template>
+        </p-dropdown>
+        <button id="bShowCreateVersionDialog" pButton type="button" (click)="versionClick()" label="New Version"></button>
+    </div>   
+ </div>
+<div class="row">
+     <div class="col-lg-12">
+            <div class="row">               
+                    <p-tabView orientation="top">
+                        <p-tabPanel header="Table/Schema Upload">
+                            <schemaupload [version]="selectedBasisVersion"></schemaupload>
+                        </p-tabPanel>
+                        <p-tabPanel header="Table Mapping">
+                            <tablemapping [version]="selectedBasisVersion" [commanderBasisVersions] ="commanderBasisVersions"></tablemapping>                            
+                        </p-tabPanel>
+                        <p-tabPanel header="EPS Log">
+                          <epslog></epslog>
+                        </p-tabPanel>        
+                        <p-tabPanel header="Audit Trail">
+                            <audit [version]="selectedBasisVersion"></audit>
+                        </p-tabPanel>   
+                    </p-tabView>
+            </div>
+     </div>
+</div>
+
+</div>
+<p-dialog [(visible)]="displayVersionDialog" appendToBody="true" [minWidth]="400">
+    <p-header>
+        Create New Commander Version
+    </p-header> 
+    <fieldset>
+      <div class="form-group">
+                <div class="row">
+                    <div class="col-sm-5">
+                        <label for="newVersion">New Version</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <input type="text" id="newVersion" name="newVersion" [(ngModel)]="newVersion" (ngModelChange)="versionChange($event)" 
+                               maxlength="20" required />
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                       
+                    </div>
+                    <div *ngIf="!isValidatedVersion()"
+                         class="col-sm-7" style="color:red;font-size:x-small;float:right">
+                         Alphanumeric and !#$?.+-_*() allowed!
+                    </div>                    
+                </div>
+                <div class="row">
+                    <div class="col-sm-5">
+                        <label>Basis Version</label>
+                    </div>
+                    <div class="col-sm-7">
+                        <p-dropdown id ="ddlbasisVersion" appendTo="body" [options]="basisVersions" [(ngModel)]="basisVersion" [style]="{width: '100%'}" [filter]="true" responsive="true" placeholder="Select Basis Version" ></p-dropdown>
+                    </div>
+                </div>
+
+                <div class="row" style="margin:16px">
+                    <div class="col-sm-5">
+
+                    </div>
+                    <div class="col-sm-7">
+                        <button type="button" id="bCreateVersion" (click)="CreateVersion()"  class="btn btn-primary"  [disabled]="!isValidatedVersion() || versionExists()" >Create Version</button>
+                    </div>
+                </div>               
+            </div>
+        
+</fieldset>
+
+</p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="fa fa-question-circle" width="425"></p-confirmDialog>
+
+<loading [loading]="loading"></loading>

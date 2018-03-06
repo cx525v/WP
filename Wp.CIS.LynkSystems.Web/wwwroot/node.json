@@ -1,0 +1,46 @@
+
+{
+    "data": [
+
+        {
+            "label": "Movies",
+            "data": "Movies Folder",
+            "expandedIcon": "fa-folder-open",
+            "collapsedIcon": "fa-folder",
+            "children": [
+                {
+                    "label": "Al Pacino",
+                    "data": "Pacino Movies",
+                    "children": [
+                        {
+                            "label": "Scarface",
+                            "icon": "fa-file-video-o",
+                            "data": "Scarface Movie"
+                        },
+                        {
+                            "label": "Serpico",
+                            "icon": "fa-file-video-o",
+                            "data": "Serpico Movie"
+                        }
+                    ]
+                },
+                {
+                    "label": "Robert De Niro",
+                    "data": "De Niro Movies",
+                    "children": [
+                        {
+                            "label": "Goodfellas",
+                            "icon": "fa-file-video-o",
+                            "data": "Goodfellas Movie"
+                        },
+                        {
+                            "label": "Untouchables",
+                            "icon": "fa-file-video-o",
+                            "data": "Untouchables Movie"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

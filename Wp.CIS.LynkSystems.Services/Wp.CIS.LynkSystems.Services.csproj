@@ -1,0 +1,40 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <Configurations>Debug;Release;Development;QA;Production;DevServer;Staging</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+    <GeneratePackageOnBuild>True</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="DemographicsApi.cs" />
+    <Compile Remove="PasswordHasherHelper.cs" />
+    <Compile Remove="PatientAddressApi.cs" />
+    <Compile Remove="PatientApi.cs" />
+    <Compile Remove="PracticeApi.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Dapper" Version="1.50.2" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Localization" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0" />
+	<PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Worldpay.CIS.DataAccess\Worldpay.CIS.DataAccess.csproj" />
+    <ProjectReference Include="..\Worldpay.CIS.ExceptionHandler\Worldpay.CIS.Utilities.csproj" />
+    <ProjectReference Include="..\Wp.CIS.LynkSystems.Interfaces\Wp.CIS.LynkSystems.Interfaces.csproj" />
+    <ProjectReference Include="..\Wp.CIS.LynkSystems.Model\Wp.CIS.LynkSystems.Model.csproj" />
+  </ItemGroup>
+
+</Project>

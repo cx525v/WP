@@ -1,0 +1,53 @@
+﻿
+.labelInfoStyle {
+    color: blue;
+}
+
+.labelInfoStyle:hover {
+    /*color: white;*/
+}
+
+p-radioButton {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+p-dropdown {
+    margin-left: 0;
+    padding-left: 0;
+}
+
+.productEditSectionStyle {
+    /*width: 100%;*/
+    margin-top: 20px
+}
+
+.noMarginsOrPaddingStyle {
+    margin: 0;
+    padding: 0;
+}
+
+.formGroupSectionStyle {
+    padding-top: 5px;
+    padding-bottom: 5px;
+    padding-left: 10px;
+}
+
+#productInfoEditContainer > div:nth-child(even) {
+    background-color: lightgray;
+}
+
+#productInfoEditContainer > div:hover {
+    background-color: lightblue;
+    transition: background-color .5s;
+    -webkit-transition: background-color .5s;
+    -moz-transition: background-color .5s;
+    -o-transition: background-color .5s;
+    /*color:white;*/
+}
+
+.errorMessageStyle {
+    margin-top: 10px;
+    padding-left: 5px;
+    padding-right: 5px;
+}

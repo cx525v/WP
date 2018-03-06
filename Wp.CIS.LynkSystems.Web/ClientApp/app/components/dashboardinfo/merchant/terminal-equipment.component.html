@@ -1,0 +1,47 @@
+﻿<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+<div class="terminalEquipmentsDiv">
+    <label style="margin-bottom:20px;" id="lTerminalEquipment">Terminal Equipment</label>
+    <div *ngIf="terminalEquipments">
+        <p-dataTable id="pTerminalEquipment" 
+                     #dt
+                     styleClass="borderless"         
+                     sortField="terminalID" 
+                     sortOrder="1"
+                     [lazy]="lazy"
+                     [totalRecords]="totalRecords"
+                     (onLazyLoad)="loadTerminalEquipments($event)"
+                     [filterDelay] ="500"
+                     [loading]="loading"
+                     [value]="terminalEquipments"
+                     [rows]="5"
+                     [paginator]="true"
+                     [responsive]="true"
+                     [tableStyle]="{'table-layout':'auto'}"
+                     resizableColumns="true"
+                     selectionMode="single" 
+                     [(selection)]="_selectedTerminalEquipment"
+                     (onRowSelect)="handleRowSelect($event)">                    
+            <p-column field="terminalID" header="TID" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="equipment" header="Equipment" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="software" header="Software" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="status" header="Status" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            <p-column field="deactivateActivateDate" header="De/Activate Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'overflow':'visible'}">
+                <ng-template pTemplate="filter" let-col>     
+                    <br />
+                    <i class="fa fa-close" (click)="clearCreateDateFilter($event)"></i>
+                    <p-calendar
+                                [(ngModel)]="_deActivateDate"
+                                showButtonBar="true"
+                                (onSelect)="dt.filter(convertMDY($event),col.field,col.filterMatchMode)"
+                                appendTo="body">
+
+                    </p-calendar>
+                </ng-template>
+                <ng-template let-col let-terminal="rowData" let-ri="rowIndex" pTemplate="body">
+                    <span>{{terminal.deactivateActivateDate}}</span>
+                </ng-template>
+            </p-column>
+
+        </p-dataTable>
+    </div>
+</div>

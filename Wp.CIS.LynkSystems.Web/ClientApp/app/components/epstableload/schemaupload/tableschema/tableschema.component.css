@@ -1,0 +1,25 @@
+
+.newLineDiv {
+    position: relative;
+    background: white;
+    width: 100%;
+    min-width: 315px;
+    margin: 16px 0 0 0;
+}
+.validationError {
+    color: red;
+}
+
+.tableName{
+    color:blue;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input,
+input:valid {
+    border-color: #ccc;
+}
+

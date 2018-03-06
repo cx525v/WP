@@ -1,0 +1,6 @@
+﻿
+<div class="row" *ngFor="let item of memos | twoCol ">
+     <div  class="col-md-5"><memo-list-item [item]="item[0]"> </memo-list-item> </div>
+    <div class="col-md-1"></div>
+    <div  class="col-md-5" *ngIf="item[1]"><memo-list-item [item]="item[1]"> </memo-list-item></div>   
+</div>

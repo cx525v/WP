@@ -1,0 +1,16 @@
+﻿
+.dashboardTitleStyle {
+    /*text-align: left;*/
+    color: red;
+    margin-left: 15px;
+}
+
+.dashboardInstructionsStyle {
+    margin-left: 15px;
+    font-size: large;
+    margin-top: 15px;
+}
+
+.listInstructionsStyle{
+    color:blue;
+}

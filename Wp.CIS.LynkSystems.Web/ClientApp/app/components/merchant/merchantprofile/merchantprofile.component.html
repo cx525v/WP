@@ -1,0 +1,441 @@
+﻿
+
+<div class="row">
+    <div class="col-md-12">
+        <div class="col-md-8 col-lg-offset-4">
+            <h3>Details</h3>
+        </div>
+        <div class="col-md-6 ">
+            <form class="form-horizontal" [formGroup]="formData" (ngSubmit)="submitData()">
+
+                <div class="form-group">
+                    <label for="merchantId" class="col-sm-4 control-label">merchantId</label>
+                    <div class="col-sm-8">
+                        <input type="text" class="form-control"
+                               name="merchantId" placeholder="merchantId"
+                               formControlName="merchantId">
+                    </div>
+                    <div *ngIf="!formData.get('merchantId').valid && formData.get('merchantId').dirty"
+                         class="col-sm-8 col-sm-offset-4" style="color:red">
+                        Enter value!!
+                    </div>
+                </div>
+                <div class="form-group">
+                    <div class="col-sm-offset-4 col-sm-8">
+                        <button type="submit" [disabled]="!formData.valid" class="btn btn-info">Submit</button>
+                    </div>
+                </div>
+
+            </form>
+
+            <div class="row">
+                <div *ngIf="ensettings">
+                    <p-tabView orientation="top" >
+                        
+
+                        <p-tabPanel header="General Info" [selected]="true">
+
+                            General Info
+                            Customer ID<input type="text" pInputText [(ngModel)]="ensettings.customerID" /><br />
+                            Merchant ID<input type="text" pInputText [(ngModel)]="ensettings.merchantId" /><br />
+                            <!--<input type="text" pInputText [(ngModel)]="ensettings.customerID" />--><br />
+                            Activation Date<input type="text" pInputText [(ngModel)]="ensettings.activationDt" /><br />
+                           
+                            <!--<div class="panel-body">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-sm">Activation Date:</span>
+
+                        <input type="date" name="mpAppliedForDt" required="required" class="form-control col-md-7 col-xs-12" [(ngModel)]="ensettings.ActivationDt">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-sm">Account Number:</span>
+
+                        <input type="text" name="mpAccNum" required="required" class="form-control col-md-7 col-xs-12" [(ngModel)]="ensettings.AccountNbr">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-sm">DiscountRate:</span>
+
+                        <input type="text" name="mpDiscRate" required="required" class="form-control col-md-7 col-xs-12" [(ngModel)]="ensettings.DiscountRate">
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+
+                    <span class="input-group-addon input-sm">Deactivation Date:</span>
+
+                    <input type="date" name="mpDeactDate" required="required" class="form-control col-md-7 col-xs-12" [(ngModel)]="ensettings.DeactivationDt">
+                </div>
+            </div>
+            <div class="row">
+                <div>
+                    <div class="col-md-6">
+
+                        <div class="input-group">
+                            <span class="input-group-addon input-sm">Industry Type:</span>
+                            <select id="IndustryTypesDropdown" class="form-control"></select>
+                            <input type="text" name="mpDeactDate" required="required" class="form-control col-md-7 col-xs-12" [(ngModel)]="ensettings.IndustryTypeDesc">
+
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon input-sm">FNS Number:</span>
+                            <input id="textinputFNSNumber" name="textinput" type="text" class="form-control input-md" [(ngModel)]="ensettings.FNSNbr" />
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon input-sm">EBT Benefit Type:</span>
+
+                            <select id="BenefitTypesDropdown" class="form-control"></select>
+
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon input-sm">Federal Tax ID:</span>
+                            <input id="textFederalTaxID" name="textinput" type="text" class="form-control input-md" />
+                        </div>
+
+                        <div class="input-group">
+                            <span class="input-group-addon input-sm">
+                                IRS Verified:
+
+                                <input type="checkbox" name="checkboxes" id="checkboxes-0">
+                            </span>
+                        </div>
+                        <div class="input-group">
+                            <span class="input-group-addon input-sm">State Tax Code:</span>
+                            <input id="textStateTaxCode" name="textinput" type="text" class="form-control input-md" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-md-6">
+
+
+                    <div class="col-md-3">
+
+                        <div class="panel-body,input-group">
+                            <div class="row">
+                                <span class="input-group-addon">
+                                    <input type="checkbox" id="chkSeasonalMerchant" aria-label="Checkbox for following text input" />
+                                </span>
+                                <span class="input-group-addon input-sm">Seasonal merchant</span>
+                            </div>
+                            <div class="row">
+                                <span class="input-group-addon input-sm">From:</span>
+                                <select id="seasonalMerchantFrom" name="seasonalMerchantFrom" class="form-control">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <span class="input-group-addon input-sm">To:</span>
+                                <select id="seasonalMerchantTo" name="seasonalMerchantTo" class="form-control">
+                                    <option value="1">January</option>
+                                    <option value="2">February</option>
+                                    <option value="3">March</option>
+                                    <option value="4">April</option>
+                                    <option value="5">May</option>
+                                    <option value="6">June</option>
+                                    <option value="7">July</option>
+                                    <option value="8">August</option>
+                                    <option value="9">September</option>
+                                    <option value="10">October</option>
+                                    <option value="11">November</option>
+                                    <option value="12">December</option>
+                                </select>
+                            </div>
+                            <span class="input-group-addon input-sm">Current Merchant Status:</span>
+
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <div class="panel-body,input-group">
+
+                            <button class="btn btn-default btn-sm" type="button" id="btnChangeMerchantProfile">Save Merchant Profile</button>
+
+                            <button class="btn btn-default btn-sm" type="button" id="btnChangeMerchantStatus">Save Merchant Status</button>
+
+                            <button class="btn btn-default btn-sm" type="button" id="btnGenerateMerchantNbr">Generate Merchant Nbr</button>
+
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-sm">SIC Code:</span>
+
+                        <select id="SicCodesDropdown" class="form-control"></select>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="input-group">
+                        <span class="input-group-addon input-sm">Merchant Type:</span>
+                        <input id="textinputMerchTypeDesc" name="textinput" type="text" class="form-control input-md" />
+                    </div>
+                </div>
+                <div class="col-md-12">
+                    <div class="input-group">
+
+                        <a href="#myModal" class="btn btn-default btn-sm" type="button" id="btnAMLinfo" data-toggle="modal">AML Info</a>
+                        <div id="myModal" class="modal fade">
+                            <div class="modal-dialog">
+
+                                <div class="modal-content">
+                                    <div class="input-group">
+                                        <span class="input-group-addon input-sm">SIC Code:</span>
+                                        <select id="SicCodesDropdownAML" class="form-control"></select>
+                                    </div>
+                                    <div class="modal-header">
+                                        <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                                        <h4 class="modal-title">Business Hours</h4>
+                                    </div>
+                                    <div class="modal-body">
+                                        <div class="form-group">
+                                            <div>
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Monday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-0" value="1">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeMOpen" name="timeMOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeMClose" name="timeMClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Tuesday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-1" value="2">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeTuOpen" name="timeTuOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeTuClose" name="timeTuClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Wednesday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-2" value="3">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeWOpen" name="timeWOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeWClose" name="timeWClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Thursday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-3" value="4">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeThOpen" name="timeThOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeThClose" name="timeThClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Friday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-4" value="2">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8  input-group" role="group">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeFrOpen" name="timeFrOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeFrClose" name="timeFrClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+
+                                                </div>
+
+
+
+                                                <br />
+
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Saturday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-5" value="3">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8 input-group" role="group">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group" role="group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeSaOpen" name="timeSaOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group input-group" role="group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeSaClose" name="timeSaClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+                                                <br />
+                                                <div class="row">
+                                                    <div class="col-md-4">
+                                                        <div class="col-md-3"><span>Sunday </span></div>
+                                                        <div class="col-md-3">
+                                                            <input type="checkbox" name="checkboxes" id="busHourscheckboxes-6" value="7">Closed
+                                                        </div>
+                                                    </div>
+
+                                                    <div class="col-md-8 input-group" role="group">
+                                                        <div class="col-md-4">
+                                                            <div class="input-group" role="group">
+                                                                <span class="input-group-addon input-sm">Open time</span>
+                                                                <input id="timeSuOpen" name="timeSuOpen" type="time" class="form-control input-sm" value="14:35:10" />
+                                                            </div>
+                                                        </div>
+                                                        <div class="col-md-4">
+                                                            <div class="input-group" role="group">
+                                                                <span class="input-group-addon input-sm">Close time</span>
+                                                                <input id="timeSuClose" name="timeSuClose" type="time" class="form-control input-sm" value="23:59:00" />
+                                                            </div>
+                                                        </div>
+                                                    </div>
+
+                                                </div>
+
+                                            </div>
+
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div id="divCheckServicesInfo" class="tab-pane fade">
+                                    <div class="panel-heading">
+                                        check services info
+                                    </div>
+                                </div>
+
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>-->
+                        </p-tabPanel>
+                        <p-tabPanel header="PCI Information">
+                            PCI
+                        </p-tabPanel>
+                        <p-tabPanel header="ThirdParty Service Info">
+                            ThirdParty Service Info
+                        </p-tabPanel>
+                        <p-tabPanel header="MFC">
+                            MFC
+                        </p-tabPanel>
+                        <p-tabPanel header="Withholding">
+                            Withholding
+                        </p-tabPanel>
+                    </p-tabView>
+                   
+                </div>
+            </div>
+        
+        </div>
+
+    </div>
+</div>

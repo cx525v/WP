@@ -1,0 +1,69 @@
+﻿.uploadIcon.ui-fileupload{
+   content:"\f093"; 
+}
+
+.uploadIcon.ui-fileupload-content{
+   content:"\f093"; 
+}
+.uploadIcon.ui-fileupload-buttonbar.ui-widget-header.ui-corner-top {
+    content: "\e027";
+} 
+
+.uploadIcon.ui-fileupload-buttonbar {
+    content: "\e027";
+}
+
+.showDiv{
+   display: block;
+   visibility: visible; 
+}
+
+.hideDiv{
+    display: none;
+    visibility: hidden;
+}
+
+[hidden] {
+   display: none;
+}
+
+input:invalid {
+    border-color: red;
+}
+
+input,
+input:valid {
+    border-color: #ccc;
+}
+
+.required {
+    position: relative;
+    margin-right: .4em;
+}
+
+.required:after {
+    content: "*";
+    display: block;
+    position: absolute;
+    right: -.6em;
+    top: -.1em;
+    color:red;
+}
+
+.mappingDiv {
+    max-height: 524px;
+    min-height: 524px;
+    overflow-y: scroll;
+    width: 500px;
+}
+
+#pParamDropdownlist.ng-invalid:not(form) > div {
+    border-left: 1px solid red;
+    border-top: 1px solid red;
+    border-bottom: 1px solid red;
+    border-right: 1px solid red;
+}
+
+.validationError{
+    color: red;
+}

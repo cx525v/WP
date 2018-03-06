@@ -1,0 +1,230 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+
+  <PropertyGroup Label="Globals">
+    <SccProjectName>SAK</SccProjectName>
+    <SccProvider>SAK</SccProvider>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccLocalPath>SAK</SccLocalPath>
+    <Configurations>Debug;Release;Development;QA;Production;DevServer;Staging</Configurations>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.0</TargetFramework>
+	<AssetTargetFallback>$(AssetTargetFallback);portable-net45+win8</AssetTargetFallback>
+    <PackageRequireLicenseAcceptance>True</PackageRequireLicenseAcceptance>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp1.1\.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Remove="wwwroot\**" />
+    <Content Remove="wwwroot\**" />
+    <EmbeddedResource Remove="wwwroot\**" />
+    <None Remove="wwwroot\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Remove="Controllers\AuthorizationController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="log4net.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="CISPluslog-2017-11-16.txt" />
+    <None Remove="CISPluslog-2017-11-17.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.8" />
+    <PackageReference Include="Microsoft.ApplicationInsights.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="Microsoft.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Diagnostics" Version="2.0.0" />
+    <PackageReference Include="Microsoft.AspNetCore.Identity" Version="2.0.0" />    
+    <PackageReference Include="Microsoft.AspNetCore.Mvc" Version="2.0.0" />    
+    <PackageReference Include="Microsoft.AspNetCore.ResponseCompression" Version="2.0.1" />
+    <PackageReference Include="Microsoft.AspNetCore.StaticFiles" Version="2.0.0" />    
+    <PackageReference Include="Microsoft.Extensions.Caching.SqlServer" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Configuration" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options" Version="2.0.0" />
+    <PackageReference Include="Microsoft.Extensions.Options.ConfigurationExtensions" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.BrowserLink" Version="2.0.0" />
+    <PackageReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Design" Version="2.0.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="10.0.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="Swashbuckle.AspNetCore.SwaggerUi" Version="1.0.0" />
+    <PackageReference Include="System.IdentityModel.Tokens.Jwt" Version="5.1.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <DotNetCliToolReference Include="Microsoft.VisualStudio.Web.CodeGeneration.Tools" Version="1.0.1" />
+  </ItemGroup>
+  <ItemGroup>    
+    <ProjectReference Include="..\Libraries-Logging\src\Logging.Providers.Log4Net\Logging.Providers.Log4Net.csproj" />
+    <ProjectReference Include="..\Worldpay.CIS.ExceptionHandler\Worldpay.CIS.Utilities.csproj" />
+    <ProjectReference Include="..\Wp.CIS.LynkSystems.Services\Wp.CIS.LynkSystems.Services.csproj" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Update="appsettings.json">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+  <ItemGroup>
+    <WCFMetadata Include="Connected Services" />
+  </ItemGroup>
+  <ItemGroup>
+	<Compile Update="Resources\Controller.CommanderVersionController.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Controller.CommanderVersionController.resx</DependentUpon>
+		</Compile>
+	<Compile Update="Resources\Controllers.DashboardInfoController.Designer.cs">
+	  <DesignTime>True</DesignTime>
+	  <AutoGen>True</AutoGen>
+	  <DependentUpon>Controllers.DashboardInfoController.resx</DependentUpon>
+	</Compile>
+	<Compile Update="Resources\Controllers.EPSLogController.Designer.cs">
+		  <DesignTime>True</DesignTime>
+		  <AutoGen>True</AutoGen>
+		  <DependentUpon>Controllers.EPSLogController.resx</DependentUpon>
+		</Compile>
+	<Compile Update="Resources\Controllers.EPSTableController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.EPSTableController.resx</DependentUpon>
+    </Compile>
+	<Compile Update="Resources\Controllers.MerchantListController.Designer.cs">
+	  <DesignTime>True</DesignTime>
+	  <AutoGen>True</AutoGen>
+	  <DependentUpon>Controllers.MerchantListController.resx</DependentUpon>
+	</Compile>
+    <Compile Update="Resources\Controllers.Security.AccountController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.Security.AccountController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.AuditHistoryController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.AuditHistoryController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.BrandController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.BrandController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.DownloadTimesController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.DownloadTimesController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.InstallTypesController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.InstallTypesController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.ManufacturersController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.ManufacturersController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.MobileLookupController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.MobileLookupController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.ProductsController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.ProductsController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.ProductTypesController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.ProductTypesController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.TerminalListController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.TerminalListController.resx</DependentUpon>
+    </Compile>
+    <Compile Update="Resources\Controllers.TransactionsInquiryController.Designer.cs">
+      <DesignTime>True</DesignTime>
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Controllers.TransactionsInquiryController.resx</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+	<EmbeddedResource Update="Resources\Controller.CommanderVersionController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controller.CommanderVersionController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+	<EmbeddedResource Update="Resources\Controllers.DashboardInfoController.resx">
+	  <Generator>ResXFileCodeGenerator</Generator>
+	  <LastGenOutput>Controllers.DashboardInfoController.Designer.cs</LastGenOutput>
+	</EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.EPSLogController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.EPSLogController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.EPSMappingController.resx">
+      <Generator></Generator>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.EPSTableController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.EPSTableController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.MerchantListController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.MerchantListController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.Security.AccountController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.Security.AccountController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.AuditHistoryController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.AuditHistoryController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.BrandController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.BrandController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.DownloadTimesController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.DownloadTimesController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.InstallTypesController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.InstallTypesController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.ManufacturersController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.ManufacturersController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.MobileLookupController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.MobileLookupController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.ProductsController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.ProductsController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.ProductTypesController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.ProductTypesController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.TerminalListController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.TerminalListController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <EmbeddedResource Update="Resources\Controllers.TransactionsInquiryController.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Controllers.TransactionsInquiryController.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+  </ItemGroup>
+
+</Project>

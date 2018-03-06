@@ -1,0 +1,46 @@
+<div class="alert alert-danger" *ngIf="errorMsg">{{errorMsg}}</div>
+<div class="transactionDiv" *ngIf="transactions" >
+    <p-dataTable id="transactionGridClient"
+                 #dt
+                 styleClass="borderless"        
+                 sortField="reQ_BUS_DATE" 
+                 sortOrder="-1"
+                 [lazy]="lazy"
+                 [totalRecords]="totalRecords" 
+                 (onLazyLoad)="loadTransaction($event)"
+                 [loading]="loading"
+                 [value]="transactions"
+                 [rows]="pageSize"
+                 [paginator]="true"
+                 [responsive]="true"
+                 [tableStyle]="{'table-layout':'auto'}"
+                 resizableColumns="true">
+       
+        <p-column field="reQ_BUS_DATE" header="Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true" [style]="{'overflow':'visible'}">
+            <ng-template pTemplate="filter" let-col>
+                <br />
+                <i class="fa fa-close" (click)="clearDateFilter($event)"></i>
+                <p-calendar [(ngModel)]="_theDate"
+                            showButtonBar="true"
+                            (onSelect)="dt.filter(convertMDY($event),col.field,col.filterMatchMode)"
+                            appendTo="body">
+
+                </p-calendar>
+            </ng-template>
+            <ng-template let-col let-transaction="rowData" let-ri="rowIndex" pTemplate="body">
+                <span>{{transaction.reQ_BUS_DATE}}</span>
+            </ng-template>
+        </p-column>
+
+        <p-column field="reQ_AMT" header="Amount" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true">
+            <ng-template let-trans="rowData" pTemplate="body">
+                <span style="float:right">{{trans.reQ_AMT | number:'1.2-2'}}</span>
+            </ng-template>
+        </p-column>
+
+        <p-column field="reQ_PAN_4" header="Last4" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="reQ_TRAN_TYPE" header="Type" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="resP_NETWRK_AUTH_CD" header="NCD" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="descript" header="Source" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+    </p-dataTable>
+</div>

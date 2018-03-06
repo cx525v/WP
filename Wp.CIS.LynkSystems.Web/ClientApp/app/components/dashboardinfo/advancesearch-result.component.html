@@ -1,0 +1,16 @@
+<div *ngIf="result">
+    <p-dataTable 
+                 [value]="result"
+                 [rows]="5"
+                 [paginator]="true"
+                 [responsive]="true"
+                 styleClass="borderless"
+                 [tableStyle]="{'table-layout':'auto'}"
+                 resizableColumns="true"
+                 selectionMode="single" 
+                 [(selection)]="selectedResult"
+                 (onRowSelect)="handleRowSelect($event)"
+                 >
+          <p-column field="name" header="Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+    </p-dataTable>
+</div>

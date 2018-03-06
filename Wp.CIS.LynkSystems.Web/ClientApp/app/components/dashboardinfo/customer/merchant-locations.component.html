@@ -1,0 +1,28 @@
+﻿<div class="merchantLocationDiv" *ngIf="merchantList">
+    <label style="margin-bottom:40px;" id="lmerchantLocation">Merchant Locations</label>
+
+    <p-dataTable id="ptmerchantLocations"
+                 styleClass="borderless"             
+                 sortField="mid" 
+                 sortOrder="1"
+                 [lazy]="lazy"
+                 [totalRecords]="totalRecords" 
+                 (onLazyLoad)="loadMerchantLocations($event)"
+                 [filterDelay] ="500"
+                 [loading] ="loading"
+                 [value]="merchantList"
+                 [rows]="5"
+                 [paginator]="true"                
+                 [responsive]="true"
+                 [tableStyle]="{'table-layout':'auto'}"
+                 resizableColumns="true"
+                 selectionMode="single" 
+                 [(selection)]="_selectedMerchantLocation"
+                 (onRowSelect)="handleRowSelect($event)">
+        <p-column field="mid" header="MID" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="name" header="Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="state" header="State" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="zipCode" header="Zip" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+        <p-column field="statusIndicator" header="Status" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+    </p-dataTable>
+</div>

@@ -1,0 +1,14 @@
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\xunit.runner.visualstudio.dotnetcore.testadapter.dll
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\xunit.runner.utility.netstandard15.dll
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\xunit.runner.reporters.netstandard15.dll
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\UnitTestDataAccess.deps.json
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\UnitTestDataAccess.runtimeconfig.json
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\UnitTestDataAccess.runtimeconfig.dev.json
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\UnitTestDataAccess.dll
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\UnitTestDataAccess.pdb
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\Wp.CIS.LynkSystems.Model.dll
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\bin\Debug\netcoreapp1.1\Wp.CIS.LynkSystems.Model.pdb
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\obj\Debug\netcoreapp1.1\UnitTestDataAccess.csprojResolveAssemblyReference.cache
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\obj\Debug\netcoreapp1.1\UnitTestDataAccess.AssemblyInfo.cs
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\obj\Debug\netcoreapp1.1\UnitTestDataAccess.dll
+C:\Users\cxu\Projects\CISPlus\Master\UnitTestDataAccess\obj\Debug\netcoreapp1.1\UnitTestDataAccess.pdb

@@ -1,0 +1,15 @@
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.csproj.CoreCompileInputs.cache
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.AssemblyInfoInputs.cache
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.AssemblyInfo.cs
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\bin\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.deps.json
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\bin\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.dll
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\bin\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.pdb
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.dll
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.pdb
+C:\Users\cxu\Projects\CISPlus\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.csprojResolveAssemblyReference.cache
+C:\Master\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.csprojResolveAssemblyReference.cache
+C:\Master\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.csproj.CoreCompileInputs.cache
+C:\Master\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.AssemblyInfoInputs.cache
+C:\Master\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Logging.Providers.Log4Net.AssemblyInfo.cs
+C:\Master\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.dll
+C:\Master\Master\Libraries-Logging\src\Logging.Providers.Log4Net\obj\Debug\netstandard2.0\Worldpay.Logging.Providers.Log4Net.pdb

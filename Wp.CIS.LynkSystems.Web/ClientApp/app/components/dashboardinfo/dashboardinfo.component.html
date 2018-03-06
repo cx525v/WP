@@ -1,0 +1,300 @@
+﻿<div>
+    <div class="x_panel" id="search-panel">
+        <div class="x_title">
+            <h2>Search</h2>
+            <div class="clearfix"></div>
+        </div>
+        <div class="x_content">
+            <form [formGroup]="formData">
+
+                <div class="form-group ui-g ui-sm">
+                    <p-dropdown name="selectedValue" [options]="searchList" formControlName="selectedValue" ng-required="true" [filter]="true" responsive="true"></p-dropdown>
+                    <input name="selectId" formControlName="selectId" placeholder="Search.." ng-required="true" ng-pattern="/^[0-9]*$/" pInputText/>                        
+
+                        
+                </div>
+                <div class="ln_solid"></div>
+                <div class="form-group">
+                    <button type="submit" class="btn btn-success"  [disabled]="!formData.valid"  (click)="getDashboardInfo()">Search</button>
+                    <button class="btn btn-primary" type="reset">Clear</button>
+                </div>
+                <div *ngIf="!formData.get('selectId').valid && formData.get('selectId').dirty"
+                     class="col-sm-8 col-sm-offset-4" style="color:red">
+                    Enter value!!
+                </div>
+
+            </form>
+        </div>
+    </div>
+    <div class="ui-g">
+        <div class="ui-g-12 ui-g-nopad">
+            <div class="ui-g">
+                
+                <div class="ui-g-12 ui-g-nopad">
+                    <p-panel *ngIf="customerProfile.custName">
+                        <div class="ui-g" style="text-align: left">
+                            <div>
+                                <div class="ui-g-6">
+                                    <h3>{{customerProfile.custName}}</h3>
+                                </div>
+                                <div class="ui-g-6" *ngIf="groupInfo.groupType">
+                                    <br />
+                                    <h4>{{groupInfo.groupType}}</h4>
+                                </div>
+                                <div class="ui-g-12">
+                                    <h4>Customer Number: {{customerProfile.customerNbr}}</h4>
+                                </div>
+                                <div class="ui-g-4">
+                                    <div>
+                                        <b>Contacts</b>
+                                    </div>
+                                    <p-dataTable [value]="demographicsInfoCust" [globalFilter]="gb" [responsive]="true" [tableStyle]="{'table-layout':'auto'}" selectionMode="single" (onRowSelect)="onRowSelect($event)" [(selection)]="selectedDemo">
+                                        <p-column field="name" header="Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true">
+                                            <!--<ng-template let-row="rowData" pTemplate type="body">
+                                                <a routerLink="/dashboardinfo/{{row.addressTypeId}}">{{row.name}}</a>
+                                            </ng-template>-->
+                                        </p-column>
+                                        <p-column field="addressType" header="Role" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                        <p-column field="lastFour" header="Last 4" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                    </p-dataTable>
+                                    <p-dialog name="custDemoDialog" header="Demographics" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
+                                        <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="selectedDemo" style="font-size: 16px; text-align: left; padding: 20px">
+
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">AddressType: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.addressType}}</div>
+                                            </div>
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">Name: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.name}}</div>
+                                            </div>
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">Address: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.address}} {{selectedDemo.address2}} {{selectedDemo.city}} {{selectedDemo.state}} {{selectedDemo.zipCode}}</div>
+                                            </div>
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">Phone: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.phone}}</div>
+                                            </div>
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">Contact: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.contact}}</div>
+                                            </div>
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">Email: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.email}}</div>
+                                            </div>
+                                            <div class="ui-grid-row">
+                                                <div class="ui-grid-col-4">Title: </div>
+                                                <div class="ui-grid-col-8">{{selectedDemo.title}}</div>
+                                            </div>
+                                        </div>
+                                    </p-dialog>
+                                    <div class="ui-g-12">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="ui-g-12">{{customerProfile.prinAddress}}</div>
+                                    <div class="ui-g-12">{{customerProfile.prinCity}}, {{customerProfile.prinState}} {{customerProfile.prinZipcode}}</div>
+                                    <div class="ui-g-12" *ngIf="activeServices.sicDesc">
+                                        <b>Business Type: </b>{{activeServices.sicDesc }}
+                                    </div>
+                                </div>
+                                <!--<div class="ui-g-3">
+                                    <div class="ui-g-6">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="ui-g-12">{{customerProfile.prinAddress}}</div>
+                                    <div class="ui-g-12">{{customerProfile.prinCity}}, {{customerProfile.prinState}} {{customerProfile.prinZipcode}}</div>
+                                    <div class="ui-g-12" *ngIf="activeServices.sicDesc">
+                                        <b>Business Type: </b>{{activeServices.sicDesc }}
+                                    </div>
+                                </div>-->
+                                <div class="ui-g-4">
+                                    <div *ngIf="groupInfo.groupID">
+                                        <div class="ui-g-12">
+                                            <b>Group:</b>
+                                            {{groupInfo.groupName}} ({{groupInfo.groupID}} )
+                                        </div>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <b>Partner Relationship:</b>
+                                        None
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <b>Sensitivity Level:</b>
+                                        {{customerProfile.senseLvlDesc}} 
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <b>Federal Tax ID:</b>
+                                        {{customerProfile.custFederalTaxID}}
+                                    </div>
+                                    
+                                </div>
+                                <div class="ui-g-4">
+                                    <div class="ui-g-12 ui-overflow-hidden" style="overflow:auto;width:100%">
+                                        <b>Case History</b>
+                                    
+                                    <!--<div class="ui-g-12">-->
+                                        <p-dataTable [value]="caseHistList" [globalFilter]="gb" [responsive]="true"  [rows]="5" [paginator]="true" [tableStyle]="{'table-layout':'auto'}" selectionMode="single" (onRowSelect)="onCaseSelected($event)" [(selection)]="selectedCase" >
+                                            <p-column field="caseId" header="Case #" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                            <p-column field="createDate" header="Created Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                            <p-column field="caseDesc" header="Case Description" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                            <p-column field="orgDeptName" header="Original Department" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                        </p-dataTable>
+                                        <!--</div>-->
+                                        <p-dialog name="caseHistDialog" header="Case History" [(visible)]="dialogCaseDetails" [responsive]="true" showEffect="fade" [modal]="true" (onAfterHide)="onDialogHide()">
+                                            <div class="ui-grid ui-grid-responsive ui-grid-pad" *ngIf="selectedCase" style="font-size: 16px; text-align: left; padding: 20px">
+
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">CaseID: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.caseId}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Case Description: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.caseDesc}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Created Date: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.createDate}} </div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Closed Date: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.closedDate}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Current Department: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.currDept}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Original Department: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.orgDeptName}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Referred From: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.referredFrom}}</div>
+                                                </div>
+                                                <div class="ui-grid-row">
+                                                    <div class="ui-grid-col-4">Parent CaseId: </div>
+                                                    <div class="ui-grid-col-8">{{selectedCase.parentCaseId}}</div>
+                                                </div>
+                                            </div>
+                                        </p-dialog>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                    </p-panel>
+                </div>
+                <div class="ui-g-6 ui-g-nopad">
+                    <p-panel *ngIf="merchantInfo?.merchantNbr">
+                        <div class="ui-g">
+                            <div class="ui-g-6">
+                                <div class="ui-g-12">
+                                    <h3>{{merchantInfo.mchName}}</h3>
+                                </div>
+                                <div class="ui-g-12">Merchant ID: {{merchantInfo.merchantNbr}}</div>
+
+                                <div>
+                                    <div class="ui-g-12">
+                                        <b>Address</b>
+                                    </div>
+                                    <div class="ui-g-12" style="text-align: left">{{merchantInfo.mchAddress}}</div>
+                                    <div class="ui-g-12">{{merchantInfo.mchCity}}, {{merchantInfo.mchState}} {{merchantInfo.mchZipCode}}</div>
+                                    <div class="ui-g-12">
+                                        <b>Contacts</b>
+                                    </div>
+                                    <div class="ui-g-12">
+                                        <p-dataTable [value]="demographicsInfoMerch" [globalFilter]="gb" [responsive]="true" [tableStyle]="{'table-layout':'auto'}" selectionMode="single" (onRowSelect)="onRowSelect($event)" [(selection)]="selectedDemo">
+                                            <p-column field="name" header="Name" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                            <p-column field="addressType" header="Role" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                            <p-column field="lastFour" header="Last 4" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                        </p-dataTable>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="ui-g-6">
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <br />
+                                <div class="ui-g">
+                                    <b>Status:</b>{{merchantInfo.statDesc}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>Industry:</b>{{merchantInfo.indTypeDesc}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>Federal Tax ID:</b>{{merchantInfo.merchFedTaxID}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>EBT Benefit Type:</b>{{merchantInfo.benefitTypeDesc}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>Acquiring Bank:</b>{{merchantInfo.acquiringBank}}
+                                </div>
+                                
+                            </div>
+
+                        </div>
+                    </p-panel>
+                </div>
+                
+                
+                <div class="ui-g-6 ui-g-nopad">
+                    <p-panel *ngIf="termProfile?.terminalId">
+                        <div class="ui-g">
+                            <div class="ui-g-12">
+                                <h3>Terminal - {{termProfile.terminalId}}</h3>
+                            </div>
+                            <div class="ui-g-6">
+                                <div class="ui-g">
+                                    <b>Status: </b> {{termProfile.statDesc}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>Activation Date: </b>{{termProfile.activationDt}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>Deactivation Date: </b>{{termProfile.deactivationDt}} <br /><br />
+                                </div>
+                                <div class="ui-g">
+                                    <b>Debit Cut-Off: </b>{{termProfile.cutOffTime}}
+                                </div>
+                                <div class="ui-g">
+                                    <b>Auto Settlement Time: </b><br /><br />
+                                </div>
+                                <div *ngIf="activeServices.activeServiesDesc">
+                                    <div class="ui-g">
+                                        <b>Services: </b> {{activeServices.activeServiesDesc}}<br /><br />
+                                    </div>
+                                    <div class="ui-g" *ngIf="activeServices.billMtdDesc">
+                                        <b>Billing Method: </b>{{activeServices.billMtdDesc }}<br /><br />
+                                    </div>
+                                    <div class="ui-g">
+                                        <b>Banking Information</b><br /><br />
+                                    </div>
+                                    <p-dataTable [value]="bankingInfo" [rows]="10" [paginator]="true" [globalFilter]="gb" [responsive]="true" [tableStyle]="{'table-layout':'auto'}">
+                                        <p-column field="activityAcctTypeDescription" header="Activity" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                        <p-column field="bankAcctNbr" header="Account" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                        <p-column field="bankRTNbr" header="Routing" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                                    </p-dataTable>
+                                </div>
+                            </div>
+                            <!--<div class="ui-g-6">
+            <div class="ui-g-12"><h4><b>Last 20</b></h4></div>
+            <p-dataTable [value]="" [rows]="10" [paginator]="true" [globalFilter]="gb" [responsive]="true" [tableStyle]="{'table-layout':'auto'}">
+                <p-column field="" header="Date" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                <p-column field="" header="Amount" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+                <p-column field="" header="Last 4" [filter]="true" filterMatchMode="contains" filterPlaceholder="Search" [sortable]="true"></p-column>
+            </p-dataTable>
+        </div>-->
+                        </div>
+                    </p-panel>
+                </div>
+                
+            </div>
+        </div>
+    </div>
+</div>
+<loading [loading]="loading"></loading>
